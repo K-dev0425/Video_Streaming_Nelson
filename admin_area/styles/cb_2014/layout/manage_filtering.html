@@ -1,0 +1,22 @@
+<!--<link href="../theme/stylesheet.css" rel="stylesheet" type="text/css">-->
+{$filter_location = $Cbucket->configs['filter_location']}
+<div class="heading">
+    <h2>Manage Filtering Options</h2>
+</div>
+
+<!--<a class="btn btn-primary btn-sm pull-right" href="?mode=add">Add New Level <b>+</b></a>-->
+<br>
+
+<form action="manage_filtering.php" id="form_ad_payment" method="post">
+    <!--<div class="row">-->
+        <div class="form-group">
+            <label><b>Location options:</b></label> <br>
+            <input type="radio" name="filter_location" value="current" id="current" {if $filter_location=='current'}checked{/if}>
+            <label for="current">Current</label>
+            <input type="radio" name="filter_location" value="profile" id="profile" {if $filter_location=='profile'}checked{/if}>
+            <label for="profile">Profile</label>
+        </div>
+    <!--</div>-->
+    <br>
+    <button class="btn btn-success" type="submit">Update Settings</button>
+</form>

@@ -1,0 +1,65 @@
+{$user = $userquery->get_user_details(userid())}
+
+<div id="main">
+    <div class="cb-box container" style="max-width: 450px">
+        <div id="deposit_box">
+            <div id="deposit_amount_box" class="row">
+                <div class="col-md-6">
+                    <label for="input_deposit_amount">Deposit Amount($USD)</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="number" id="input_deposit_amount" placeholder="30" value="30" name="deposit_amount" onchange="change_amount();">
+                </div>
+            </div>
+            <div id="deposit_fund">
+                <button class="btn btn-lg btn-primary" id="btn_deposit_fund">Confirm and pay </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #deposit_amount_box {
+        margin-top: 20px;
+    }
+    #deposit_fund {
+        margin-top: 30px;
+        margin-bottom: 25px;
+    }
+    #deposit_amount_box .col-md-6, #deposit_fund {
+        text-align: center;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        // var deposit_amount = $('#input_deposit_amount').val();
+        // $('#deposit_amount').text(deposit_amount);
+    });
+
+    function change_amount() {
+        var deposit_amount = $('#input_deposit_amount').val();
+        $('#deposit_amount').text(deposit_amount);
+    }
+
+    $('#btn_deposit_fund').click(function () {
+        var amount = $('#input_deposit_amount').val();
+        var balance = '{$user.balance}';
+        var baseurl = '{$baseurl}';
+        var updated_balance = parseFloat(balance) + parseFloat(amount);
+        updated_balance = updated_balance.toFixed(2);
+        $.ajax({
+            url: baseurl + '/actions/update_deposit.php',
+            type: 'post',
+            data: {
+                amount: amount,
+                updated_balance: updated_balance
+            },
+            success: function (msg) {
+                if (msg !== 'false')
+                    alert('$' + amount + 'USD was added to your deposit.');
+                    window.location.reload();
+            }
+        })
+    })
+</script>

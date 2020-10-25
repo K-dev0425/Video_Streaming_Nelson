@@ -1,0 +1,110 @@
+<link href="../theme/stylesheet.css" rel="stylesheet" type="text/css">
+<div class="heading">
+    <h2>Ads Payments</h2>
+</div>
+
+<!--<a class="btn btn-primary btn-sm pull-right" href="?mode=add">Add New Level <b>+</b></a>-->
+<br>
+
+<form action="ad_payment.php" id="form_ad_payment" method="get">
+    <div class="filter_box">
+        <div class="row">
+            <div class="col-lg-6">
+
+            </div>
+            <div class="col-lg-6 text-right">
+                <div class="form-group" style="display: inline-block">
+                    <label for="username">Username: </label>
+                    <input type="text" name="username" id="username" value="{$userInput}">
+                </div>
+                <div class="form-group" style="display: inline-block">
+                    <select name="date" id="select_date" data-placement="">
+                        <option value="all">All Time</option>
+                        <option value="today">Today</option>
+                        <option value="yesterday">Yesterday</option>
+                        <option value="this_week">This Week</option>
+                        <option value="this_month">This Month</option>
+                        <option value="this_year">This Year</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<br>
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>User Name</th>
+        <th>Video ID</th>
+        <th>Paid Time</th>
+        <th>Amount</th>
+        <th>Balance</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {foreach $ad_payments as $item}
+    <tr>
+        <td>{$item['id']}</td>
+        <td>{$item['username']}</td>
+        <td>{$item['videoid']}</td>
+        <td>{$item['paid_time']}s</td>
+        <td>${$item['amount']} USD</td>
+        <td>${$item['balance']} USD</td>
+        <td>{$item['date_']}</td>
+    </tr>
+    {/foreach}
+    </tbody>
+</table>
+
+    <div class="dataTables_paginate paging_bootstrap">
+        <ul class="pagination">
+            {if $page==1}
+            <li class="prev disabled">
+                {else}
+            <li class="prev">
+                {/if}
+                <a href="?username={$userInput}&date={$dateInput}&page=1">
+                    <i class="icon-double-angle-left"></i></a>
+            </li>
+
+            {if $page > 2}
+            <li><a href="?username={$userInput}&date={$dateInput}&page={$page-2}">{$page-2}</a></li>
+            {/if}
+            {if $page > 1}
+            <li><a href="?username={$userInput}&date={$dateInput}&page={$page-1}">{$page-1}</a></li>
+            {/if}
+            <li class="active"><a href="?username={$userInput}&date={$dateInput}&page={$page}">{$page}</a></li>
+            {if $page+1 <= $last_page}
+            <li><a href="?username={$userInput}&date={$dateInput}&page={$page+1}">{$page+1}</a></li>
+            {/if}
+            {if $page+2 <= $last_page}
+            <li><a href="?username={$userInput}&date={$dateInput}&page={$page+2}">{$page+2}</a></li>
+            {/if}
+
+            <li class="next"> <a href="?username={$userInput}&date={$dateInput}&page={$last_page}">&raquo;</a></li>
+        </ul>
+
+    </div>
+
+</form>
+
+<script>
+    $('#username').keyup(function (e) {
+        if (e.keyCode == 13) {
+            $('#form_ad_payment').submit();
+        }
+    });
+
+    $('#select_date').change(function () {
+        $('#form_ad_payment').submit();
+    });
+
+    var selected_date = '{$dateInput}';
+    $('#select_date option[value="'+ selected_date +'"]').prop('selected', true);
+</script>
+
+

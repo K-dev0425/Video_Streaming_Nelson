@@ -1,0 +1,489 @@
+{$currentPage = $smarty.const.THIS_PAGE|lower}
+{if $currentPage == 'view_channel' || $currentPage == 'channels'}
+{$currentPage = 'channels'}
+{$toSearch = 'channels'}
+{elseif $currentPage == 'view_item' || $currentPage == 'photos'}
+{$currentPage = 'photos'}
+{$toSearch = 'photos'}
+{elseif $currentPage == 'collections' || $currentPage == 'view_collection'}
+{$currentPage = 'collections'}
+{$toSearch = 'collections'}
+{elseif $currentPage == 'watch_video' || $currentPage == 'videos'}
+{$currentPage = 'videos'}
+{$toSearch = 'videos'}
+
+
+{elseif $currentPage == 'list'}
+{$currentPage = 'audios'}
+{/if}
+{$vidMode = {lang code="videos"}}
+{$photoMode = {lang code="photos"}}
+{$channelsMode = {lang code="channels"}}
+{$pageType = $smarty.get.type|lower}
+<div id="quick_container">
+	<div id="quicklist_box">
+	</div>
+</div>
+
+{$searchPage = $smarty.get.query}
+<header id="header" class="clearfix dark bright">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="header-holder">
+				<div class="navbar-header clearfix">
+
+					<h1 class="logo" style="margin-left: 18px">
+						<a href="{$baseurl}">
+							<img src="{$theme}/images/logo.png" alt="cbtune" class="img-responsive">
+							<!--<span>clipbucket</span>-->
+						</a>
+					</h1>
+
+					<button class="navbar-toggle" data-toggle="collapse" data-target="#bs-collapse">Menu<span class="icon-down-arrow"></span></button>
+
+					<a href="javascript:void(0)" class="btn-search-toggle btn visible-xs">
+						<i class="icon-search"></i>
+					</a>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-collapse">
+					<div class="menu-holder">
+
+						<div class="col">
+							<nav class="main-links">
+								{$head_menu=cb_menu()}
+								<ul>
+									{foreach $head_menu as $menu}
+									{if $menu.name|lower == 'groups'}
+									{continue}
+									{/if}
+									{if $menu@iteration < 6}
+									{if $menu.this|lower == 'home'}
+									{continue}
+									{/if}
+									{if $menu.this == "home"}
+									{continue}
+									{/if}
+									<li {if $menu.name|lower == $smarty.const.THIS_PAGE|lower || $menu.name|lower == $currentPage}class="active"{/if}><a href="{$menu.link}">{$menu.name}</a></li>
+									{/if}
+									{/foreach}
+
+									<li>
+										<a href="http://lookmyad.com/clip/ads.php">Ads</a>
+									</li>
+									{ANCHOR place="cb_28_head"}
+								</ul>
+
+								<hr>
+
+								<!--<span id="balance_link"></span><br><br><br>-->
+
+								<!--<div class="form-group">-->
+									<!--<input type="radio" name="color_scheme" id="dark_theme" value="1" checked onchange="add_dark(this)">-->
+									<!--<label for="dark_theme">Dark Theme</label><br>-->
+									<!--<input type="radio" name="color_scheme" id="bright_theme" value="0" onchange="remove_dark(this)">-->
+									<!--<label for="bright_theme">Bright Theme</label>-->
+								<!--</div>-->
+							</nav>
+						</div>
+						<!-- <div class="col">
+							<a href="#" class="fancy-btn btn btn-default cd-popup-trigger">Animation</a>
+						</div> -->
+						<div class="col btn-holder user_menu text-right">
+							<div class="search">
+								<form class="search-form" action="{link name='search_result'}">
+									<div class="cbsearchtype">
+										<div class="search-drop">
+											<button id="searchTypes" tabindex="-1" data-toggle="dropdown" class="btn btn-default dropdown-toggle search-drop-btn" type="button">
+												<span class="search-type">{if $pageType}{$pageType|ucfirst}{elseif $currentPage == 'videos' || $currentPage == 'channels' || $currentPage == 'photos'}{$currentPage|ucfirst}{else}{lang code="videos"}{/if}</span>
+												<span class="icon-down-arrow"></span>
+											</button>
+											<ul class="dropdown-menu">
+												{$counter = 1}
+												{foreach from=$Cbucket->search_types item=t key=stypes}
+												{if $stypes|lower == 'groups'}
+												{continue}
+												{/if}
+												{if $counter == 3}
+												<li value="{$stypes}" {if $pageType == $stypes || $currentPage == $stypes}  class="active"  {/if}>
+													<a  class="s-types" href="#" valNow="{$stypes}">{lang code ="{$stypes}"}</a>
+												</li>
+												{else}
+												<li value="{$stypes}" {if $pageType == $stypes || $currentPage == $stypes}  class="active" {/if}>
+													<a  class="s-types" href="#" valNow="{$stypes}">{lang code ="{$stypes}"}</a>
+												</li>
+												{/if}
+												{$counter = $counter + 1}
+												{/foreach}
+												{ANCHOR place="beat_search"}
+											</ul>
+										</div>
+										<input type="text" class="form-control" name="query" placeholder="{lang code="search_keyword_feed"}" value="{'query'|get_form_val:true}" id="query">
+										<input type="hidden" name="type" class="type" value="{if isset($smarty.get.type)}{$smarty.get.type}{elseif $toSearch}{$toSearch}{else}videos{/if}" id="type">
+										<button tabindex="-1" type="submit" name="cbsearch" id="cbsearch" class="btn btn-default btn-search icon-search"></button>
+										{ANCHOR place="elastic_mode_search"}
+									</div>
+								</form><!-- form Ends -->
+							</div>
+
+                            <style>
+                                .user_menu .right-menu {
+                                    max-height: 34px;
+                                }
+                                .myaccount-dd img{
+                                    position: relative;
+                                    top: -7px;
+                                }
+                                .myaccount-dd a p {
+                                    display: inline-block;
+                                    line-height: 1.2;
+                                    text-align: left;
+                                }
+                            </style>
+
+							<ul class="nav navbar-nav navbar-right right-menu">
+								{if userid()}
+								<li class="dropdown upload_link">
+									<a href="{link name='upload'}" class="dropdown-toggle btn-upload btn btn-default" data-toggle="dropdown"><i class="icon-upload"></i><span>{lang code="upload"}</span><b class="icon-down-arrow"></b></a>
+									<ul role="menu" class="dropdown-menu">
+										{if has_access('allow_video_upload',true,true) && isSectionEnabled('videos')}
+										<li class="up_vid"><a href="{link name='upload'}">{lang code="upload_video"}<i class="icon-video visible-xs"></i></a></li>
+										{/if}
+										{if isSectionEnabled('photos')}
+										<li class="up_img"><a href="{link name='photo_upload'}">{lang code="upload_photo"}<i class="icon-photo visible-xs"></i></a></li>
+										{/if}
+										{ANCHOR place="aud_upload_link"}
+									</ul>
+								</li>
+
+								<li class="dropdown myaccount-dd">
+									<a href="javascript:void(0)" class="user-area dropdown-toggle dark bright" data-toggle="dropdown">
+										{$user_det = $userquery->get_user_details(userid())}
+										<img src="{$userquery->getUserThumb($user_det)}" width="35" height="35">
+                                        <p style="display: inline-block">{$userquery->username|truncate:15}<br><span id="header_price">${number_format((float)($user_det.balance), 2)} USD</span></p>
+									</a>
+									<ul class="dropdown-menu">
+										{if has_access('admin_access')}
+										<li class="hidden-xs"><a href="{$admin_baseurl}">{lang code="admin_area"}</a></li>
+										{/if}
+										<li class="hidden-xs"><a href="{link name='my_account' }{userid}">{lang code="my_account"}</a></li>
+										<li class="hidden-xs"><a href="{link name='deposit_fund'}deposit_fund.php">Deposit Funds</a></li>
+										<li class="hidden-xs"><a href="{link name='my_videos'}">{lang code="manage_videos"}</a></li>
+										{ANCHOR place="head_audio_dropdown"}
+										<li><a href="{link name='channels'}">{lang code="view_channels"}</a></li>
+										<!-- changes made-->
+										<li><a href="{$baseurl}/manage_playlists.php?user={$userquery->username}">{lang code="my_playlists"}</a></li>
+										<!-- /changes made-->
+										<li><a href="{$baseurl}/view_channel.php?user={$userquery->username}">{lang code="my_channel"}</a></li>
+										{ANCHOR place='premium_button_link'}
+										<li class="divider"></li>
+										<li><a href="{link name='logout'}">{lang code="logout"}</a></li>
+									</ul>
+								</li>
+								{else}
+
+								<!-- Shown to small devices only Start  @todo : Add condition for logged in user -->
+								<li class="navbar-sm-login-links">
+									<a class="btn btn-default btn-newacc" href="{link name='signup'}">{lang code='create_new_account'}</a>
+								</li>
+								<li class="navbar-sm-login-links">
+									<a class="btn btn-default btn-login" href="{link name='signup'}?mode=login">{lang code='login'}</a>
+								</li>
+
+								<!-- Ends -->
+								{/if}
+							</ul>
+						</div>
+					</div>
+				</div><!--navbar-collapse-->
+			</div>
+		</div><!--container-fluid-->
+	</nav>
+</header>
+
+<script>
+	$(document).ready(function(){
+		var vidMode = "{$vidMode}",
+		photoMode = "{$photoMode}",
+		channelsMode = "{$channelsMode}",
+		currentDisplay = $('span.search-type').text();
+		if (currentDisplay == 'Videos') {
+			$('span.search-type').text(vidMode);
+		} else if (currentDisplay == 'Channels') {
+			$('span.search-type').text(channelsMode);
+		} else if (currentDisplay == 'Photos') {
+			$('span.search-type').text(photoMode);
+		}
+
+		$(".cbsearchtype a").on({
+			click: function(e){
+				e.preventDefault();
+				var prent_li = $(this).parents();
+				var theNewVal = $(this).attr('valNow');
+				$('.type').val(theNewVal);
+				$('.cbsearchtype li').removeClass('active');
+				prent_li.addClass('active');
+			}
+		});
+
+		$('.s-types').on("click", function(){
+			var _this = $(this);
+			var text = _this.html();
+			$('.search-type').html(text);
+		});
+
+
+
+	});
+</script>
+
+<style>
+	input[type=radio] {
+		position: relative;
+		top: -2px;
+	}
+	#header {
+		z-index: 9999!important;
+	}
+	#left-menu {
+		position: fixed;
+		top: 60px;
+		width: 256px;
+		background: #fff;
+		color: #000;
+		height: calc(100vh - 60px);
+	}
+	#left-menu ul {
+		list-style: none;
+		margin: 10px 10px;
+		padding: 10px 20px 0 30px;
+	}
+	#left-menu ul li {
+		min-height: 40px;
+		display: table;
+	}
+	#left-menu ul li a {
+		display: table-cell;
+		font-size: 18px;
+		vertical-align: middle;
+	}
+	#left-menu.dark ul li a {
+		color: #fff!important;
+	}
+	#left-menu hr, .main-links hr {
+		background: #444;
+		height: 3px;
+		border: none!important;
+	}
+	#left-menu .form-group {
+		margin-left: 40px;
+	}
+	#left-menu .form-group label {
+		font-size: 16px;
+	}
+	#left-menu .form-group input[type=radio], .main-links .form-group input[type=radio] {
+		position: relative;
+		top: -4px;
+	}
+	#balance_menu {
+		font-size: 18px;
+		margin-left: 40px;
+	}
+	#main, .account-container, .manage-page {
+		width: calc(100% - 330px);
+		position: relative;
+		margin-left: 290px;
+		padding-top: -40px!important;
+	}
+	/*#content {*/
+		/*width: 100%;*/
+	/*}*/
+	.main-links {
+		display: none!important;
+	}
+	.main-links #balance_link {
+		display: none;
+	}
+	.main-links .form-group {
+		display: none;
+	}
+	.dark .main-links ul li a {
+		color: #fff!important;
+	}
+	@media only screen and (max-width: 767px) {
+		.dark .filter-dropdowns .dropdown > a {
+			color: #fff!important;
+		}
+	}
+	section.clearfix {
+		position: relative;
+	}
+	#recent_vids_sec .owl-nav .owl-prev, #recent_ads_sec .owl-nav .owl-prev {
+		position: absolute;
+		width: 40px;
+		height: 100px;
+		background: rgba(0,0,0,0.5);
+		top: 50%;
+		margin: -100px 0 0;
+		left: -20px;
+		z-index: 6;
+		color: #fff;
+		font-size: 18px;
+		line-height: 50px;
+		text-align: center;
+		padding: 30px 0;
+	}
+	#recent_vids_sec .owl-nav .owl-next, #recent_ads_sec .owl-nav .owl-next {
+		position: absolute;
+		width: 40px;
+		height: 100px;
+		background: rgba(0,0,0,0.5);
+		top: 50%;
+		margin: -100px 0 0;
+		left: auto;
+		right: -40px;
+		z-index: 6;
+		color: #fff;
+		font-size: 18px;
+		line-height: 50px;
+		text-align: center;
+		padding: 30px 0;
+	}
+	#recent_vids_sec .owl-item, #recent_ads_sec .owl-item {
+		width: 250px!important;
+	}
+	#recent_vids_sec .owl-item:first-child, #recent_ads_sec .owl-item:first-child {
+		width: 0px!important;
+	}
+	#check_ads {
+		margin-bottom: 25px;
+	}
+	#check_ads label.inline {
+		position: relative;
+		top: -3px;
+		z-index: 1!important;
+	}
+	span.total_price {
+		width: auto;
+		height: 20px;
+		padding: 0;
+		font-size: 18px;
+		line-height: 18px;
+		text-align: center;
+		color: #fff;
+		background: none;
+		cursor: pointer;
+		position: absolute;
+		z-index: 3;
+		bottom: 9px;
+		left: 40px
+	}
+	span.watch_color {
+		width: 20px;
+		height: 20px;
+		padding: 0;
+		font-size: 18px;
+		line-height: 18px;
+		text-align: center;
+		cursor: pointer;
+		position: absolute;
+		z-index: 3;
+		bottom: 10px;
+		right: 70px;
+		border-radius: 100%;
+	}
+	.watch_color.blue {
+		background: green!important;
+	}
+	.watch_color.red {
+		background: red!important;
+	}
+	.watch_color.yellow {
+		background: yellow!important;
+	}
+	@media (max-width: 992px) {
+		#left-menu {
+			display: none;
+		}
+		#main, .account-container, .manage-page, .alert.container {
+			width: 100%;
+			padding: 0 20px;
+			position: relative;
+			left: -290px;
+		}
+		.main-links {
+			display: block!important;
+		}
+		.main-links #balance_link {
+			display: table-cell;
+		}
+		.main-links .form-group {
+			display: block;
+		}
+	}
+
+	.dark {
+		color: #fff!important;
+		background: #252525;
+	}
+	#left-menu.dark, header.dark, .myaccount-dd a.dark {
+		background: #111!important;
+	}
+	.dark .cb-box {
+		color: #000;
+	}
+</style>
+
+<div id="left-menu" class="dark bright">
+	<div class="menu-container">
+		{$head_menu=cb_menu()}
+		<ul>
+			{foreach $head_menu as $menu}
+			{if $menu.name|lower == 'groups'}
+			{continue}
+			{/if}
+			{if $menu@iteration < 6}
+			{if $menu.this|lower == 'home'}
+			{continue}
+			{/if}
+			{if $menu.this == "home"}
+			{continue}
+			{/if}
+			<li {if $menu.name|lower == $smarty.const.THIS_PAGE|lower || $menu.name|lower == $currentPage}class="active"{/if}><a href="{$menu.link}">{$menu.name}</a></li>
+			{/if}
+			{/foreach}
+
+			<li>
+				<a href="http://lookmyad.com/clip/ads.php">Ads</a>
+			</li>
+			{ANCHOR place="cb_28_head"}
+		</ul>
+
+		<hr>
+
+		{if $user_det != ''}
+		<span id="balance_menu">Balance: ${number_format((float)($user_det.balance), 2)} USD</span><br><br><br>
+		{/if}
+
+		<div class="form-group">
+			<input type="radio" name="color_scheme" id="dark_theme" value="1" checked onchange="add_dark(this)">
+			<label for="dark_theme">{lang code="dark_theme"}</label><br>
+			<input type="radio" name="color_scheme" id="bright_theme" value="0" onchange="remove_dark(this)">
+			<label for="bright_theme">{lang code="light_theme"}</label>
+		</div>
+
+	</div>
+</div>
+
+<script>
+    function add_dark(elem) {
+        if ($(elem).prop('checked'))
+            $('.bright').addClass('dark');
+    }
+
+    function remove_dark(elem) {
+        if ($(elem).prop('checked'))
+            $('.dark').removeClass('dark');
+    }
+</script>

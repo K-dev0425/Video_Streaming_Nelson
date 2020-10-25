@@ -1,0 +1,44 @@
+<!--<link href="../theme/stylesheet.css" rel="stylesheet" type="text/css">-->
+{$video_fee = $Cbucket->configs['video_fee']}
+<div class="heading">
+    <h2>Manage Price</h2>
+</div>
+
+<!--<a class="btn btn-primary btn-sm pull-right" href="?mode=add">Add New Level <b>+</b></a>-->
+<br>
+
+<form action="#" id="form_price" method="post">
+    <!--<div class="row">-->
+    <div class="form-group">
+        <label for="video_fee"><b>Fee(%):</b></label> <br>
+        <input type="number" name="video_fee" id="video_fee" value="{(int)$video_fee}">
+    </div>
+    <!--</div>-->
+    <br>
+    <button class="btn btn-success" type="button" id="btn_submit">Update Settings</button>
+</form>
+
+<script>
+    var baseurl = '{$baseurl}';
+
+    $(document).ready(function () {
+        $('#btn_submit').click(function () {
+            var video_fee = $('#video_fee').val();
+
+            $.ajax({
+                url: baseurl + '/admin_area/manage_price.php',
+                type: 'post',
+                data: {
+                    video_fee: video_fee
+                },
+                success: function (msg) {
+                    if (msg) {
+                        alert('Successfully updated.');
+                        window.location.reload();
+                    }
+                }
+            })
+        })
+    });
+
+</script>

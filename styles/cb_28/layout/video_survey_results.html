@@ -1,0 +1,111 @@
+{$myAccountLinks = $userquery->my_account_links()}
+{$leftMenuLinks = array_slice($myAccountLinks, 7)}
+<div class="container manage-page marginBottom">
+    <div class="cb-box">
+        <div class="row">
+            <div class="leftSidebar col-lg-3 col-md-3 col-sm-3 hidden-xs">
+                {include file="$style_dir/blocks/manage/userMenuLeft.html"}
+            </div>
+            <div class="mainContent col-lg-9 col-md-9 col-sm-9 col-xs-12">
+
+                <div class="cb-box marginBottom">
+                    <!--{print_r($video)}-->
+                    <h2>{$video[0]['title']}</h2>
+                    <br>
+                    {if $video[0]['question_1'] != '' && $video[0]['question_1'] != null}
+                    <div class="quiz_field">
+                        <div class="question_field">
+                            <span style="font-size: 18px">Question 1: </span><span style="font-size: 20px!important;color: blue;">{$video[0]['question_1']}</span>
+                        </div>
+                        <div class="answer_field">
+                            {if $video[0]['answer_1_1'] != '' && $video[0]['answer_1_1'] != null}
+                            <span style="font-size: 15px;">Answer 1: </span><span style="font-size: 17px;font-weight: 600">{$video[0]['answer_1_1']}</span><span class="num">{$video[0]['answer_1_1_num']}</span><br>
+                            {/if}
+                            {if $video[0]['answer_1_2'] != '' && $video[0]['answer_1_2'] != null}
+                            <span style="font-size: 15px;">Answer 2: </span><span style="font-size: 17px;font-weight: 600">{$video[0]['answer_1_2']}</span><span class="num">{$video[0]['answer_1_2_num']}</span><br>
+                            {/if}
+                            {if $video[0]['answer_1_3'] != '' && $video[0]['answer_1_3'] != null}
+                            <span style="font-size: 15px;">Answer 3: </span><span style="font-size: 17px;font-weight: 600">{$video[0]['answer_1_3']}</span><span class="num">{$video[0]['answer_1_3_num']}</span><br>
+                            {/if}
+                            {if $video[0]['answer_1_4'] != '' && $video[0]['answer_1_4'] != null}
+                            <span style="font-size: 15px;">Answer 4: </span><span style="font-size: 17px;font-weight: 600">{$video[0]['answer_1_4']}</span><span class="num">{$video[0]['answer_1_4_num']}</span><br>
+                            {/if}
+                            {if $video[0]['answer_1_5'] != '' && $video[0]['answer_1_5'] != null}
+                            <span style="font-size: 15px;">Answer 5: </span><span style="font-size: 17px;font-weight: 600">{$video[0]['answer_1_5']}</span><span class="num">{$video[0]['answer_1_5_num']}</span><br>
+                            {/if}
+                        </div>
+                    </div>
+                    {/if}
+                    <br>
+                    {if $video[0]['question_2'] != '' && $video[0]['question_2'] != null}
+                    <div class="quiz_field">
+                        <div class="question_field">
+                            <span style="font-size: 18px">Question 2: </span><span style="font-size: 20px!important;color: blue;">{$video[0]['question_2']}</span>
+                        </div>
+                        <div class="answer_field">
+                            {if $video[0]['answer_2_1'] != '' && $video[0]['answer_2_1'] != null}
+                            <span style="font-size: 15px;">Answer 1: </span><span style="font-size: 17px;font-weight: 600">{$video[0]['answer_2_1']}</span><span class="num">{$video[0]['answer_2_1_num']}</span><br>
+                            {/if}
+                            {if $video[0]['answer_2_2'] != '' && $video[0]['answer_2_2'] != null}
+                            <span style="font-size: 15px;">Answer 2: </span><span style="font-size: 17px;font-weight: 600">{$video[0]['answer_2_2']}</span><span class="num">{$video[0]['answer_2_2_num']}</span><br>
+                            {/if}
+                            {if $video[0]['answer_2_3'] != '' && $video[0]['answer_2_3'] != null}
+                            <span style="font-size: 15px;">Answer 3: </span><span style="font-size: 17px;font-weight: 600">{$video[0]['answer_2_3']}</span><span class="num">{$video[0]['answer_2_3_num']}</span><br>
+                            {/if}
+                            {if $video[0]['answer_2_4'] != '' && $video[0]['answer_2_4'] != null}
+                            <span style="font-size: 15px;">Answer 4: </span><span style="font-size: 17px;font-weight: 600">{$video[0]['answer_2_4']}</span><span class="num">{$video[0]['answer_2_4_num']}</span><br>
+                            {/if}
+                            {if $video[0]['answer_2_5'] != '' && $video[0]['answer_2_5'] != null}
+                            <span style="font-size: 15px;">Answer 5: </span><span style="font-size: 17px;font-weight: 600">{$video[0]['answer_2_5']}</span><span class="num">{$video[0]['answer_2_5_num']}</span><br>
+                            {/if}
+                        </div>
+                    </div>
+                    {/if}
+                    <br>
+                    {if $video[0]['question_3'] != '' && $video[0]['question_3'] != null}
+                    <div class="quiz_field">
+                        <div class="question_field">
+                            <span style="font-size: 18px">Question 3: </span><span style="font-size: 20px!important;color: blue;">{$video[0]['question_3']}</span>
+                        </div>
+                        <div class="answer_field">
+                            {if $video[0]['answer_3_1'] != '' && $video[0]['answer_3_1'] != null}
+                            <span style="font-size: 15px;">Answer 1: </span><span style="font-size: 17px;font-weight: 600">{$video[0]['answer_3_1']}</span><span class="num">{$video[0]['answer_3_1_num']}</span><br>
+                            {/if}
+                            {if $video[0]['answer_3_2'] != '' && $video[0]['answer_3_2'] != null}
+                            <span style="font-size: 15px;">Answer 2: </span><span style="font-size: 17px;font-weight: 600">{$video[0]['answer_3_2']}</span><span class="num">{$video[0]['answer_3_2_num']}</span><br>
+                            {/if}
+                            {if $video[0]['answer_3_3'] != '' && $video[0]['answer_3_3'] != null}
+                            <span style="font-size: 15px;">Answer 3: </span><span style="font-size: 17px;font-weight: 600">{$video[0]['answer_3_3']}</span><span class="num">{$video[0]['answer_3_3_num']}</span><br>
+                            {/if}
+                            {if $video[0]['answer_3_4'] != '' && $video[0]['answer_3_4'] != null}
+                            <span style="font-size: 15px;">Answer 4: </span><span style="font-size: 17px;font-weight: 600">{$video[0]['answer_3_4']}</span><span class="num">{$video[0]['answer_3_4_num']}</span><br>
+                            {/if}
+                            {if $video[0]['answer_3_5'] != '' && $video[0]['answer_3_5'] != null}
+                            <span style="font-size: 15px;">Answer 5: </span><span style="font-size: 17px;font-weight: 600">{$video[0]['answer_3_5']}</span><span class="num">{$video[0]['answer_3_5_num']}</span><br>
+                            {/if}
+                        </div>
+                    </div>
+                    {/if}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .quiz_field {
+        margin-bottom: 25px;
+    }
+    .question_field {
+        margin-bottom: 10px;
+    }
+    .num {
+        margin-left: 10px;
+        background: lightblue;
+        color: white;
+        border-radius: 100%;
+        width: 20px!important;
+        height: 20px!important;
+    }
+</style>
+

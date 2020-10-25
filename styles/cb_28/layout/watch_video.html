@@ -1,0 +1,770 @@
+{$video=$vdo}
+{$type='video'}
+{$channel = $userquery->get_user_details($video.userid)}
+
+{if userid()}
+{$user_det = $userquery->get_user_details(userid())}
+{else}
+{$user_det = ''}
+{/if}
+
+{$video_fee = $Cbucket->configs['video_fee']}
+
+
+<style>
+	.dark .views-counter span {
+		color: #000!important;
+	}
+	.dark .video-details h2, .dark .video-details label, .dark .video-details .tab-pane p {
+		color: #000!important;
+	}
+	.vjs-playing .vjs-cb-header-caption {
+		opacity: 1!important;
+	}
+	.vjs-cb-header-caption.vjs-fade {
+		opacity: 0!important;
+	}
+</style>
+
+<div id="main" class="clearfix container">
+	<div class="clearfix">
+		<section id="content" class="clearfix videos">
+			<div class="clearfix player-holder">
+				<div id="cb_player" class="cb_player">
+					{FlashPlayer vdetails=$video width='100%' height='100%'}
+				</div><!-- cb_player end -->
+			</div>
+			<!-- end of player-holder -->
+			<div class="clearfix leaderboard-ad ad">
+				{AD place='ad_728x90'}
+			</div>
+			<section class="video-details clearfix">
+				<header class="clearfix details">
+					<h1>{$video.title}</h1>
+					<div class="user-video-info clearfix">
+						<a href="{$userquery->profile_link($video)}" class="avatar">
+							<img src="{$userquery->avatar($video,'m',userid())}" class="img-responsive">
+						</a>
+						<h2 class="user-title">
+							<a href="{$userquery->profile_link($video)}"> {$video.username}</a>
+						</h2>
+						<!-- look at  -->
+						<div class="views-counter">
+							<span>
+								{if $Cbucket->configs.video_round_views=='yes'}
+								{prettyNum($vdo.views)}
+								{else}
+								{( $vdo.views )}
+								{/if}
+								{if $vdo.views > 1}
+								{lang code='views'}
+								{else}
+								{lang code="view"}
+								{/if}
+							</span>
+						</div>
+					</div>
+					<div class="user-likes-sub clearfix">
+						<div class="clearfix like-rating col-lg-6 col-md-6 col-sm-6 col-xs-12" id="rating_container">
+							{if $vdo.allow_rating != 'no'}
+							{show_video_rating  rating=$vdo.rating ratings=$vdo.rated_by total='10' id=$vdo.videoid type=video}
+							{/if}
+						</div>
+						<!--<div class="clearfix subscribe-col col-lg-6 col-md-6 col-sm-6 col-xs-12">-->
+							<!--{if $video.userid != userid()}-->
+								<!--{if $userquery->is_subscribed($video.userid,userid())}-->
+									<!--<button id="{$video.userid}" onclick="_cb.unsubscribeToChannel({$video.userid},'unsubscribe_user');" class="btn btn-subscribe btn-primary subs_{$video.userid} unsubs_{$video.userid}"><i class="icon-rss2"></i>-->
+										<!--{lang code="unsubscribe"}-->
+									<!--</button>-->
+										<!---->
+								<!--{else}-->
+									<!--<button id="subs_{$video.userid}" onclick="_cb.subscribeToChannelNew({$video.userid},'subscribe_user');" class="btn btn-subscribe btn-primary subs_{$video.userid} unsubs_{$video.userid}"><i class="icon-rss2"></i>-->
+										<!--{lang code="subscribe"}-->
+									<!--</button>-->
+								<!--{/if}-->
+							<!--{/if}-->
+							<!--{if $Cbucket->configs.video_download==1 && $cbvid->downloadable($vdo)}-->
+							<!--<div class="dropdown">-->
+								<!--<button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">-->
+									<!--{lang code='download'}-->
+									<!--<span class="caret"></span>-->
+								<!--</button>-->
+								<!--<ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">-->
+									<!--{$files = get_video_files($vdo,true,true)}-->
+									<!--{foreach $files as $file}-->
+									<!--{$quality = explode('-',$file)}-->
+									<!--{$quality = array_reverse($quality)}-->
+									<!--{$quality = explode('.',$quality.0)}-->
+									<!--{$file_quality = $quality.0}-->
+									<!--<li role="presentation">-->
+										<!--<a role="menuitem" tabindex="-1" href="{$file}"  download>-->
+											<!--<span class="glyphicon glyphicon-download-alt"></span> {$file_quality}</a>-->
+
+										<!--</li>-->
+										<!--{/foreach}-->
+									<!--</ul>-->
+								<!--</div>-->
+								<!--{/if}-->
+							<!--</div>-->
+						</div>
+					</header>
+					<div id="messageFav" class="alert alert-info marginTop" style="display:none"></div>
+					<div class="view-tabs clearfix">
+						<ul class="clearfix nav nav-tabs">
+							<li class="active">
+								<a href="#cb-item-info" data-toggle="tab"><span class="icon-info"></span>{lang code='info'}</a>
+							</li>
+							<li>
+								<a href="#cb-item-share" data-toggle="tab"><span class="icon-share"></span>{lang code='share_embed'}</a>
+							</li>
+							<li>
+								<a href="#cb-item-addto" data-toggle="tab"><span class="icon-plusrounded"></span>{lang code='add_to'}</a>
+							</li>
+							<li>
+								<a href="#cb-item-report" data-toggle="tab"><span class="icon-flag"></span>{lang code='report_this'}</a>
+							</li>
+							<li>
+								<a href="#item-extra" data-toggle="tab"><span class="icon-plus2"></span>{lang code="extra"}</a>
+							</li>
+						</ul>
+						<div class="tab-content clearfix">
+							<div class="tab-pane fade in clearfix active" id="cb-item-info">
+								<div class="clearfix watch-vid-details">
+									<p style="white-space: pre-line;">{AutoLinkUrls($video.description|unescape:"html")}</p>
+									<div class="row">
+										<div class="col-md-6">
+											<ul class="clearfix desc-list">
+												<li><strong>{lang code='category'}</strong>:&nbsp;{$vdo.category|categories:video}</li>
+												<!--<li><strong>{lang code='duration'}</strong>:&nbsp;{if $video.duration>1}{$video.duration|SetTime}{else}00:00{/if}</li>-->
+												<li><strong>{lang code='date'}</strong>:&nbsp; {$video.date_added|nicetime}</li>
+												<!--<li><strong>Price Per Second</strong>: ${$video.price_per_sec}</li>-->
+												<!--<li><strong>Payment Time</strong>: {$video.start_paying} - {$video.end_paying}</li>-->
+												<!--<li><strong>Balance</strong>: ${$user_det.balance} USD </li>-->
+												<li>
+													<strong class="pull-left">{lang('tags')}:&nbsp;&nbsp;</strong>
+													<span class="pull-left">{$vdo.tags|tags:videos}</span>
+												</li>
+											</ul>
+										</div>
+										<div class="col-md-6">
+											<ul class="clearfix desc-list">
+												<li id="allowed_age"><strong>Allowed Age</strong>: <span>{$vdo.allowed_min_age} - {$vdo.allowed_max_age}</span></li>
+												<li id="allowed_country"><strong>Allowed Country</strong>:&nbsp;<span>{$vdo.allowed_country}</span></li>
+												<li id="allowed_gender"><strong>Allowed Gender</strong>: <span>{$vdo.allowed_gender}</span> </li>
+												<!--<li><strong>Balance(after paid)</strong>:&nbsp; $<span id="balance_after_paid">{$user_det.balance}</span> USD</li>-->
+											</ul>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<div class="tab-pane fade in clearfix" id="cb-item-share">
+								<ul class="social-share">
+									<li>
+										<a href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={videoLink($video)|urlencode}&p[images][0]={get_thumb vdetails=$video}&p[title]={$video.title|title|urlencode}&p[summary]={$video.description|description|urlencode}" target="_blank" class="btn-fb icon-facebook">
+											<span>Facebook</span>
+										</a>
+									</li>
+									<li>
+										<a href="https://twitter.com/share" target="_blank" class="btn-tw icon-twitter">
+											<span>Twitter</span>
+										</a>
+									</li>
+									<li>
+										<a href="https://plus.google.com/share?url={urlencode(videolink($video))}" target="_blank" class="btn-gplus icon-gplus">
+											<span>Google Plus</span>
+										</a>
+									</li>
+								</ul>
+								{show_share_form id=$vdo.videoid type=video}
+							</div>
+							<div class="tab-pane fade in clearfix custom-elements" id="cb-item-addto">
+								<div class="clearfix btn-fav">
+									<div id="video_action_result_cont"></div>
+									<a id="addfav" class="btn btn-block btn-primary" href="javascript:void(0)" onclick="_cb.add_to_favNew('video','{$vdo.videoid}');">{lang code='add_to_my_favorites'}</a>
+								</div>
+								<div class="clearfix">
+									{show_playlist_form id=$vdo.videoid type=video user=userid() }
+									{if userid()}
+									<div class="clearfix">
+										<div class="clearfix btn-holder text-right">
+											<a href="javascript:void(0)" onclick="$('#addCollectionCont').toggle()" class="btn btn-primary">+ {lang code='add_to_my_collection'}</a>
+										</div>
+										<div id="addCollectionCont" style="display:none">
+											{show_collection_form id=$vdo.videoid type=Video}
+										</div>
+									</div>
+									{/if}    
+								</div>
+							</div>
+							<div class="tab-pane fade in clearfix custom-elements" id="cb-item-report">
+								<h2>{lang code='report_video'}</h2>
+								{show_flag_form id=$vdo.videoid type=video userid=$vdo.userid}
+							</div>
+							<div class="tab-pane fade in clearfix custom-elements" id="item-extra">
+								<h2>{lang code='attachments'}</h2>
+								{foreach $attachments as $item}
+								<a href="{$item.fileurl}" style="color: #0080b4!important;" download>{$item.filename}</a>
+								{/foreach}
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="clearfix comments-block" id="comments-block">
+					<div id="test1"></div>
+					<div id="reply" class="clearfix"> 
+						<div  class="addComment clearfix">
+							<h2 class="com_count" id="com_count">
+								{$vdo.comments_count} <span>{lang code='comments'} </span>
+							</h2>
+							{if $myquery->is_commentable($vdo,'v')}
+							{include file="$style_dir/blocks/comments/add_comment.html" id=$vdo.videoid type=v}
+							{else}
+							<div class="alert alert-warning">
+								{lang code='comm_disabled_for_vid'}
+							</div>
+							{/if}
+						</div>
+
+						<div id="userCommentsList">
+							<div class="comments clearfix">
+								<ul id="comments-ul">
+								</ul>
+							</div>
+						</div>
+						{if $vdo.comments_count > 10}
+						<div class="clearfix text-center">
+							<button class="btn btn-loadmore" id="load-more-comments" page="2">{lang code='load_more'}</button>
+						</div>
+						{/if}
+					</div>
+				</div>
+			</section>
+
+
+		<aside id="sidebar">
+
+			<div class="box-ad ad">{AD place='ad_300x250'}</div>
+
+			<h2>{if $smarty.get.play_list}Playlist Videos{elseif $relMode != 'ono'}Related Videos{else}Popular Videos{/if}</h2>
+			<div class="clearfix sidebar-items">
+				{if $smarty.get.play_list}
+
+				{foreach $items as  $key => $item}
+				{if $item.videokey == $vdo.videokey}
+				{$current_key = $key}
+				{/if}
+				{/foreach}
+
+				{$next_item_key = $current_key+1}
+				{$prev_item_key = $current_key-1}
+				{assign var=count_index value=count($items)}
+
+				{if $next_item_key==$count_index}
+				{$next_videoLink = '#'}
+				{else}
+				{$next_videoLink = videoLink($items.$next_item_key)}
+				{/if}
+
+				{if $items.$prev_item_key==0}
+				{$prev_videoLink = '#'}
+				{else}
+				{$prev_videoLink = videoLink($items.$prev_item_key)}
+				{/if}
+
+				<div class="clearfix" style="padding-bottom:10px;">
+
+					<a href="{$prev_videoLink}" id="" class="btn btn-primary btn-xs" {if $prev_videoLink=='#'} onclick="_cb.throwHeadMsg('warning','{lang code=empty_next}', 3000, true)" {/if}><span class="glyphicon glyphicon-step-backward"></span> {lang code=previous} </a>
+
+					<a href="{$next_videoLink}"  id=""  class="btn btn-primary btn-xs" {if $next_videoLink=='#'} onclick="_cb.throwHeadMsg('warning','{lang code=empty_next}', 3000, true)" {/if}> {lang code=next} <span class="glyphicon glyphicon-step-forward"></span></a>
+
+				</div>
+
+
+
+				<div id="playlist_items">
+					{$cur_playlist = $smarty.get.play_list}
+					{$total_items = $cbvid->action->count_playlist_items($cur_playlist)}
+					{section name=plist loop=$items}
+					{include file="$style_dir/blocks/manage/account_video.html" video=$items[plist] control="onWatch" pid=$playlist.playlist_id}
+					{/section}
+				</div>
+				{if $total_items > 10}
+				<button class="btn btn-primary text-centre" id="playlist-pull" dataList={$cur_playlist} dataLimit="10" dataHit="2">Load More</button>
+				{/if}
+				{else}
+				{if $videos}
+				{foreach from=$videos item=pop_video}
+
+				{if $pop_video@iteration == 9}
+				{break}
+				{/if}
+				<div class="clearfix popular-video">
+					{include file="$style_dir/blocks/videos/video.html" display_type='popVideos_sidebar'}
+				</div>
+				{/foreach}
+
+				{else}
+				<div class="well well-info">No Videos Found !</div>
+				{/if}
+				{/if}
+			</div>
+		</aside>
+	</div>
+</div>
+
+
+	<script>
+        var baseurl = '{$baseurl}';
+
+        var payable = true;
+
+        var userid = '{userid()}';
+
+        var n = 0;
+
+        var video_type = '{$video.type}';
+        if (video_type == 'ad') {
+            $('.vidTitle').append('<span style="font-size: 16px">&nbsp;(Ad)</span>');
+
+            $('.main-links li.active').removeClass('active');
+            $('.main-links li:eq(4)').addClass('active');
+		}
+
+		var video_det = JSON.parse('{json_encode($video)}');
+
+        // var quiz_answer_text = "";
+        var answer_1 = "";
+        var answer_2 = "";
+        var answer_3 = "";
+
+		$(document).ready(function () {
+			// $('#vjs-cb-logo').remove();
+
+			var text = '<div class="vjs-cb-header-caption vjs-item"><div>Price(/s): $<span id="price">{$video.price_per_sec}</span></div><div>Current Paid: $<span id="curr_paid">0</span></div></div>' +
+				'<div class="vjs-cb-header-caption vjs-item"><div>Payment Time: <span id="time">{$video.start_paying}s - {$video.end_paying}s</span></div><div>Balance: $<span id="balance">{if userid()}{$user_det.balance}{else}0{/if}</span></div></div>' +
+				'<div class="vjs-cb-header-caption vjs-item"><div>Already Paid Time: <span id="already">{$already_paid_time}</span>s</div><div>Balance(after paid): $<span id="balance_after">{if userid()}{$user_det.balance}{else}0{/if}</span></div></div>';
+
+            $('.video-js').append(text);
+
+            // $('.vjs-modal-dialog-content').append('<form id="survey_form" action="survey.php" method="post"></form>');
+
+        });
+
+		function update_quiz(j) {
+
+		    if (j == 2) {
+		        answer_1 = $('input[type=radio][name="answer_1"]:checked').val();
+			}
+		    if (j == 3) {
+		        answer_2 = $('input[type=radio][name="answer_2"]:checked').val();
+			}
+
+			$('.vjs-modal-dialog-content').empty();
+
+		    var quiz_answer_text = "";
+
+			var question_index = 'question_' + j;
+            $('.vjs-modal-dialog-description').text(video_det[question_index]);
+
+            for (var i = 1; i < 6; i++) {
+                var answer_index = 'answer_' + j + '_' + i;
+                if (video_det[answer_index] == null || video_det[answer_index] === '') continue;
+                quiz_answer_text += '<div class="form-group"><input type="radio" value="'+ answer_index +'" name="answer_'+ j +'" id="'+ answer_index +'"><label for="'+ answer_index +'">'+ video_det[answer_index] +'</label></div>';
+            }
+
+            var question_index = 'question_' + (j+1);
+            if (video_det[question_index] == '' || video_det[question_index] == undefined) {
+                quiz_answer_text += '<div class="form-group btn_group"><button type="button" class="btn btn-info" style="margin-right: 25px" onclick="submit_quiz()">Submit</button>' +
+                    '<button type="button" class="btn btn-white" onclick="skip_survey();">Skip Survey</button></div>';
+			} else {
+                quiz_answer_text += '<div class="form-group btn_group"><button type="button" class="btn btn-info" style="margin-right: 25px" onclick="update_quiz('+ (j+1) +')">Next</button>' +
+                    '<button type="button" class="btn btn-white" onclick="skip_survey();">Skip Survey</button></div>';
+			}
+
+            $('.vjs-modal-dialog-content').append(quiz_answer_text);
+
+        }
+
+        function submit_quiz() {
+			answer_3 = $('input[type=radio][name="answer_3"]:checked').val();
+
+			$.ajax({
+				url: baseurl + "/actions/video_survey.php",
+				type: 'post',
+				data: {
+				    videoid: video_det.videoid,
+					answer_1: answer_1,
+					answer_2: answer_2,
+					answer_3: answer_3
+				},
+				async: true,
+				success: function (msg) {
+					if (msg !== '') {
+                        if (payable) {
+                            payable = false;
+                            pay_video();
+                        }
+					}
+
+                    $('.vjs-modal-dialog.vjs-error-display').addClass('vjs-hidden');
+
+                }
+			})
+        }
+
+        function skip_survey() {
+            $('.vjs-modal-dialog.vjs-error-display').addClass('vjs-hidden');
+
+            if (payable) {
+                payable = false;
+                pay_video();
+            }
+        }
+
+		var player_id = $('video.vjs-tech').attr('id');
+		var balance = '{$user_det.balance}';
+		var owner_balance = '{$channel.balance}';
+		var already_paid_time = '{$already_paid_time}';
+		already_paid_time = parseInt(already_paid_time);
+		balance = parseFloat(balance);
+		balance = balance.toFixed(2);
+		owner_balance = parseFloat(owner_balance);
+		owner_balance = owner_balance.toFixed(2);
+
+		var price_per_sec = '{$video.price_per_sec}';
+		price_per_sec = parseFloat(price_per_sec);
+
+		var start_paying_time = '{$video.start_paying}';
+		start_paying_time = parseFloat(start_paying_time) + already_paid_time;
+		var end_paying_time = '{$video.end_paying}';
+		end_paying_time = parseFloat(end_paying_time);
+
+		var current_flow = 0;
+		var current_pay_amount = 0;
+		var current_pay_amount1 = 0;
+		var fee = '{$video_fee}';
+		fee = parseInt(fee) / 100;
+		var current_second = 0;
+		var max_time = start_paying_time;
+		var remaining = balance;
+		var remaining1 = owner_balance;
+
+		var video_userId = '{$video.userid}';
+
+        var video_player = videojs(player_id);
+
+        if (video_userId != userid) {
+            video_player.on('timeupdate', function () {
+
+                $('.vjs-item').css('visibility', 'visible');
+
+                current_second = Math.floor(parseFloat(this.currentTime()));
+
+                if (userid == '' && current_second >= start_paying_time) {
+                    this.pause();
+                    n++;
+                    if (n === 1)
+                        alert('You need to register to watch more');
+                    location.href = baseurl + '/signup.php';
+				}
+
+                if (current_second > max_time && max_time <= end_paying_time && userid != '') {
+                    max_time = current_second;
+                    current_flow = parseInt(current_second - start_paying_time);
+                    current_pay_amount = current_flow * price_per_sec;
+                    current_pay_amount1 = current_pay_amount * (1 - fee);
+					current_pay_amount = current_pay_amount.toFixed(2);
+					current_pay_amount1 = current_pay_amount1.toFixed(2);
+                    // $('#current_amount').empty();
+                    $('#curr_paid').text(current_pay_amount);
+                    $('#li_current_paid_time .start').text(current_flow + 's');
+
+                    if (video_type == 'ad') {
+                        remaining = parseFloat(balance) + parseFloat(current_pay_amount1);
+                        remaining1 = owner_balance;
+                    }
+                    else {
+                        remaining = parseFloat(balance) - parseFloat(current_pay_amount);
+                        remaining1 = parseFloat(owner_balance) + parseFloat(current_pay_amount1);
+					}
+                    if (remaining <= 0 && video_type == 'video') {
+                        remaining = remaining.toFixed(2);
+                        this.pause();
+                        if (payable) {
+                            payable = false;
+                            pay_video();
+                        }
+                        alert("You can't watch anymore because you ran out of money");
+                        setTimeout(window.location.href=baseurl + '/videos.php', 1000);
+                    } else if (video_det['remaining_price'] != null && parseFloat(video_det['remaining_price']) - price_per_sec <= current_pay_amount) {
+                        remaining = remaining.toFixed(2);
+                        this.pause();
+                        if (payable) {
+                            payable = false;
+                            pay_video();
+                        }
+                        alert("This campaign's budget has ended");
+					}
+                    else {
+                        remaining = remaining.toFixed(2);
+                        $('#balance_after').text(remaining);
+                    }
+
+                }
+
+            });
+
+            video_player.on('play', function () {
+				setTimeout(fadeInfo, 6000);
+            });
+
+            video_player.on('pause', function () {
+                $('.vjs-cb-header-caption.vjs-fade').removeClass('vjs-fade');
+            });
+
+            function fadeInfo() {
+                $('.vjs-cb-header-caption').addClass('vjs-fade');
+			}
+
+            video_player.on('ended', function () {
+
+                if (video_det.question_1 != null && video_det.question_1 !== '') {
+                    $('.vjs-modal-dialog.vjs-error-display').removeClass('vjs-hidden');
+                    update_quiz(1);
+                } else if (payable) {
+                    payable = false;
+                    pay_video();
+                }
+
+            });
+
+            video_player.on('abort', function () {
+                // if (payable)
+                    pay_video();
+
+            });
+
+            $(window).on('beforeunload', function () {
+                if (payable)
+                    pay_video();
+            });
+
+        }
+
+
+
+
+        function pay_video() {
+            var updated_balance = remaining;
+
+            if (remaining1 == owner_balance) {
+                var updated_balance1 = 'no';
+			} else {
+                var updated_balance1 = remaining1;
+			}
+
+            if (max_time == Math.ceil(end_paying_time))
+                payable = false;
+
+            var transfer_type = '';
+
+            if (video_type == 'ad') {
+                transfer_type = 'got';
+                var paid = current_pay_amount1;
+                current_pay_amount1 = current_pay_amount;
+                current_pay_amount = paid;
+			}
+            else transfer_type = 'paid';
+
+            $.ajax({
+                url: baseurl + '/actions/pay_video.php',
+                type: 'post',
+                data: {
+                    paid_amount: current_pay_amount,
+					paid_amount1: current_pay_amount1,
+                    videoId: '{$video.videoid}',
+					videoOwnerId: '{$video.userid}',
+					username: '{$user_det.username}',
+					ownername: '{$channel.username}',
+                    paid_time: current_flow,
+                    already_paid_time: already_paid_time,
+                    updated_balance: updated_balance,
+					updated_balance1: updated_balance1,
+					transfer_type: transfer_type
+                },
+                success: function (msg) {
+                    if (msg != 'false' && current_pay_amount != 0) {
+                        // $('#myaccount-dd a p span').text('$' + msg + ' USD');
+						if (video_type == 'ad') alert('You got $' + current_pay_amount1 + ' USD');
+						else alert('You have paid $' + current_pay_amount + ' USD');
+                        update_balance(msg);
+					}
+                }
+            });
+        }
+
+        function update_balance(msg) {
+            $('#header_price').text('$' + msg + ' USD');
+        }
+
+		/*Cookie based comments backup start*/
+		var current_video = "{$video.videoid}",
+		cookieToSave = 'comment_data_u'+userid+"v"+current_video,
+		commentDataCheck = $.cookie(cookieToSave);
+
+        var watchPlayer = videojs('cb_video_js_' + current_video + '_html5_api');
+        var src = watchPlayer.src();
+        var src_array = src.split('/');
+        var file_name = src_array[src_array.length - 1];
+        if (file_name !== "no_video.mp4") {
+            $('.alert.alert-danger.alert-dismissable.container').remove();
+        }
+
+
+		if (commentDataCheck !== null) {
+			$('#comment_box').val(commentDataCheck);
+		}
+		$('#comment_box').on('keyup', function() {
+			var comment_data = $('#comment_box').val();
+			$.cookie(cookieToSave, comment_data, { expires : 10, path : "/" });
+		});
+
+		$('#add_comment_button').on("click",function(){
+			$.cookie(cookieToSave, null, { path : "/" });
+		});
+		/*Cookie based comments backup end*/
+
+		var playlist_total = "{$total_items}";
+		$('#ShareUsers').on("keyup",function(){
+			var typed = $(this).val();
+			$.ajax({
+				url: baseurl+'/ajax.php',
+				type: 'post',
+				dataType: 'html',
+				data: {
+					"mode":'user_suggest',
+					"typed": typed
+				},
+				beforeSend: function() {
+				},
+
+				success: function(data) {
+					$('#suggested_users').html('');
+					var jsoned = $.parseJSON(data);
+					$( jsoned.matching_users ).each(function( index, element ) {
+						$('#suggested_users').append("<option label='"+element+"' value='"+element+"'>");
+					});
+				}
+			});
+		});
+
+		/*Playlist load more start*/
+		var playlist_total = "{$total_items}";
+		$('#playlist-pull').on("click",function(){
+			var __this = $(this);
+			loadHit = $(this).attr('dataHit');
+			loadLimit = $(this).attr('dataLimit');
+			playlist = $(this).attr('dataList');
+
+			$.ajax({
+				url: baseurl+'/ajax/watch.php',
+				type: 'post',
+				dataType: 'html',
+				data: {
+					"mode":'playlistMore',
+					"loadHit":loadHit,
+					"loadLimit":loadLimit,
+					"playlist": playlist
+				},
+				beforeSend: function() {
+					$(__this).text("loading");
+				},
+
+				success: function(data) {
+					var loaded = loadLimit * loadHit;
+					if (playlist_total <= loaded) {
+						$(__this).remove();
+					} else {
+						$(__this).text("Load More");
+					}
+					if (data == 'none') {
+						$('#playlist-pull').remove();
+					}
+					$(data).appendTo('#playlist_items').fadeIn('slow');
+					$('#playlist-pull').attr('dataHit', parseInt(loadHit) + 1);
+				}
+			});
+		});
+		/*Playlist load more end*/
+
+		var aspect_ratio = 1.77778
+		var $cb_player = $("#cb_player");
+
+		$(document).ready(function(){
+			$cb_player.height( $cb_player.width() / aspect_ratio );
+
+			var videoInfo = $("#videoDescription").text();
+			var newInfo = videoInfo.replace(/(((https?:\/\/)|([\s\t]))(www.)?([a-z0-9]+)\.[a-z]+)/g, '<a href="$1">$1</a>');
+			$("#videoDescription").html(newInfo);
+
+			comments_voting = '{$vdo.comment_voting}';
+			_cb.getCommentsNew(
+				'{$type}',
+				'{$vdo.videoid}',
+				'{$vdo.last_commented}',1,
+				'{$vdo.comments_count}',
+				'{$object_type}'
+				);
+
+			$("#reportVideo").on({
+				click : function(e){
+					e.preventDefault();
+					$("#flag_item").show();
+				}
+			});
+
+			$("#subscribeUser").on({
+				click: function(e){
+					e.preventDefault();
+					_cb.subscribeToChannelNew('{$video.userid}','subscribe_user');
+				}
+			});
+			var adHtml = $('.ad-holder').html();
+			if(adHtml<1){
+				$('.ad-holder').remove();
+			}
+		/*//Progress Bar
+		  $( '#circle' ).progressCircle();
+		  $( '#circle' ).progressCircle({
+			nPercent        : nPercent,
+			showPercentText : showPercentText,
+			thickness       : thickness,
+			circleSize      : circleSize
+		});*/
+	});
+
+		$(document).on('click','#load-more-comments',function(){
+			var page = $(this).attr('page');
+			page = parseInt(page);
+			nextPage = page + 1;
+			$(this).text("Loading comments..");
+			_cb.getCommentsNew(
+				'{$type}',
+				'{$vdo.videoid}',
+				'{$vdo.last_commented}',page,
+				'{$vdo.comments_count}',
+				'{$object_type}'
+				);
+			$(this).attr('page', nextPage);
+			$(this).text("Load More")
+		})
+
+		var resizePlayer =  _cb.debounce(function() {
+			$cb_player.height( $cb_player.width() / aspect_ratio );
+		}, 500, false);
+
+		$(window).resize(resizePlayer);
+
+	</script>

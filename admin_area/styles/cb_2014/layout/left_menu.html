@@ -1,0 +1,173 @@
+
+
+{$adminMenu = $Cbucket->AdminMenu}
+
+<ul class="nav nav-list" id="sidebar">
+    {if $smarty.const.MAIN_PAGE == 'Dashboard'}
+    <li class="active open">
+        {else}
+    <li>
+    {/if}
+        <a href="index.php">
+            <i class="icon-dashboard"></i>
+            <span class="menu-text"> Dashboard </span>
+        </a>
+    </li>
+    {foreach from=$adminMenu key=name item=oneMenuItem}
+    {$class='glyphicon glyphicon-stats'}
+    {if $name=='General Configurations'}
+    {$class='glyphicon glyphicon-stats'}
+    {elseif $name=='Videos'}
+    {$class='glyphicon glyphicon-facetime-video'}
+    {/if}
+    {if $name=='Users'}
+    {$class='glyphicon glyphicon-user'}
+    {elseif $name=='Groups'}
+    {$class='glyphicon glyphicon-th-large'}
+    {/if}
+    {if $name=='Advertisement'}
+    {$class='glyphicon glyphicon-bullhorn'}
+    {elseif $name=='Templates And Players'}
+    {$class='glyphicon glyphicon-play-circle'}
+    {/if}
+    {if $name=='Plugin Manager'}
+    {$class='glyphicon glyphicon-tasks'}
+    {elseif $name=='Tool Box'}
+    {$class='glyphicon glyphicon-wrench'}
+    {/if}
+    {if $name=='Collections'}
+    {$class='glyphicon glyphicon-folder-close'}
+    {elseif $name=='Photos'}
+    {$class='glyphicon glyphicon-picture'}
+    {/if}
+    {if $name=='Global Announcement'}
+    {$class='glyphicon glyphicon-globe'}
+    {elseif $name=='ClipBucket Helper'}
+    {$class='glyphicon glyphicon-header'}
+    {/if}
+    {if $name=='Audio'}
+    {$class='glyphicon glyphicon-music'}
+    {/if}
+    {if $name=='CB Issues Manager'}
+    {$class='glyphicon glyphicon-list-alt'}
+    {/if}
+    {if $smarty.const.MAIN_PAGE == $name}
+    <li class="active open">
+        {else}
+    <li>
+        {/if}
+        <a href="#" class="dropdown-toggle">
+            <i class="{$class}"></i>
+            <span class="menu-text"> {$name} </span>
+            <b class="arrow icon-angle-down"></b>
+        </a>
+        {if $smarty.const.MAIN_PAGE == $name}
+        <ul class="submenu" style="display:block">
+            {else}
+            <ul class="submenu">
+                {/if}
+
+                {foreach from=$oneMenuItem key=name item=oneSubMenuItem}
+                
+                {if $smarty.const.SUB_PAGE == $name}
+
+                <li class="active">
+                    {else}
+                <li>
+                    {/if}
+                    <a href="{$oneSubMenuItem}">
+                        <i class="glyphicon glyphicon-hand-right"></i>
+                        {$name}
+                    </a>
+                </li>
+                {/foreach}
+
+                <!--updated By Ricky(add Filtering Option menu)-->
+                {if $name == 'Notification settings'}
+                    {if $smarty.const.SUB_PAGE == 'filtering'}
+                <li class="active">
+                    {else}
+                <li>
+                    {/if}
+                    <a href="manage_filtering.php">
+                        <i class="glyphicon glyphicon-hand-right"></i>
+                        Manage Filtering
+                    </a>
+                </li>
+                    {if $smarty.const.SUB_PAGE == 'price'}
+                <li class="active">
+                    {else}
+                <li>
+                    {/if}
+                    <a href="manage_price.php">
+                        <i class="glyphicon glyphicon-hand-right"></i>
+                        Manage Price
+                    </a>
+                </li>
+                {/if}
+            </ul>
+            {/foreach}
+
+            <!--//updated by Ricky-->
+            {if $smarty.const.MAIN_PAGE == 'payment_deposit'}
+            <li class="active open">
+                {else}
+            <li>
+                {/if}
+                <a href="#" class="dropdown-toggle">
+                    <i class="glyphicon glyphicon-usd"></i>
+                    <span class="menu-text"> Payment </span>
+                    <b class="arrow icon-angle-down"></b>
+                </a>
+                {if $smarty.const.MAIN_PAGE == 'payment_deposit'}
+                <ul class="submenu" style="display:block">
+                {else}
+                <ul class="submenu">
+                {/if}
+
+                    {if $smarty.const.SUB_PAGE == 'video_payment'}
+                    <li class="active">
+                        {else}
+                    <li>
+                        {/if}
+                        <a href="video_payment.php">
+                            <i class="glyphicon glyphicon-hand-right"></i>
+                            Video Payment
+                        </a>
+                    </li>
+
+                    {if $smarty.const.SUB_PAGE == 'ad_payment'}
+                    <li class="active">
+                        {else}
+                    <li>
+                        {/if}
+                        <a href="ad_payment.php">
+                            <i class="glyphicon glyphicon-hand-right"></i>
+                            Ad Payment
+                        </a>
+                    </li>
+
+                    {if $smarty.const.SUB_PAGE == 'deposit_fund'}
+                    <li class="active">
+                        {else}
+                    <li>
+                        {/if}
+                        <a href="deposit_fund.php">
+                            <i class="glyphicon glyphicon-hand-right"></i>
+                            Deposit Fund
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <!--//End-->
+        </ul>
+    </li>
+
+
+
+</ul>
+<div id="sidebar-collapse" class="sidebar-collapse">
+    <i data-icon2="icon-double-angle-right" data-icon1="icon-double-angle-left" class="icon-double-angle-left"></i>
+
+</div>
