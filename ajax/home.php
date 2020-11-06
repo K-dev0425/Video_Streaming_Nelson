@@ -113,6 +113,24 @@ if (isset($_POST['load_type'])) {
             } else {
                 assign("total_vids","");
             }
+
+            if (userid()){
+                $query = "SELECT * FROM " . tbl("transfer") . " WHERE userid=" . userid() . " AND videoid=" . $video['videoid'] . " ORDER BY id DESC LIMIT 1";
+                $result = db_select($query);
+
+                if (count($result) == 0) $paid_time = 0;
+                else $paid_time = $result[0]['total_paid_time'];
+            }
+            else {
+                $paid_time = 0;
+            }
+
+            $pay_interval = (int)$video['end_paying'] - (int)$video['start_paying'];
+            $remaining_interval = $pay_interval - (int)$paid_time;
+            $remaining_price = $remaining_interval * (float)$video['price_per_sec'];
+            if ($remaining_price > (float)$video['total_price']) $remaining_price = $video['total_price'];
+            $video['remaining_price'] = $remaining_price;
+
             assign("video",$video);
             assign("display_type",$display_type);
             Template('blocks/videos/video.html');

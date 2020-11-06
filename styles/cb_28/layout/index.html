@@ -1,6 +1,6 @@
 {lang code='no_featured_videos_found' assign='no_found_fe'}
 {$vae = {lang code="no_featured_videos_found"}}
-{$no_recent = {lang code="no_recent_videos_found"}}
+{$no_recent = {lang code="`_found"}}
 {$loadMoreLang ={lang code="load_more"}}
 {ANCHOR place="display_head_sec"}
 {ANCHOR place="video_head_player"}
@@ -126,6 +126,30 @@
 				<div id="recent_pre" class="clearfix"></div>
 				<div id="recent-loadmore" class="clearfix text-center">
 					<button id="recent_load_more" class="btn btn-loadmore" loadtype="video" loadmode="recent" loadlimit="{$row.index_recent}" loadhit="1" title="Load more recent video">
+						{lang code="load_more"}
+					</button>
+				</div>
+			</section>
+
+			<section class="clearfix videos">
+				<h1>{lang code="recent_audiobooks"}</h1>
+				<div id="recent_audiobooks_sec" class="clearfix row">
+				</div>
+				<div id="recentaudiobooks_pre" class="clearfix"></div>
+				<div id="recentaudiobooks-loadmore" class="clearfix text-center">
+					<button id="recentaudiobooks_load_more" class="btn btn-loadmore" loadtype="audiobook" loadmode="recent_audiobook" loadlimit="{$row.index_recent}" loadhit="1" title="Load more recent audiobooks">
+						{lang code="load_more"}
+					</button>
+				</div>
+			</section>
+
+			<section class="clearfix videos">
+				<h1>{lang code="recent_podcasts"}</h1>
+				<div id="recent_podcasts_sec" class="clearfix row">
+				</div>
+				<div id="recentpodcasts_pre" class="clearfix"></div>
+				<div id="recentpodcasts-loadmore" class="clearfix text-center">
+					<button id="recentpodcasts_load_more" class="btn btn-loadmore" loadtype="podcast" loadmode="recent_podcast" loadlimit="{$row.index_recent}" loadhit="1" title="Load more recent podcasts">
 						{lang code="load_more"}
 					</button>
 				</div>

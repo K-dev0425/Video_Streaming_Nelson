@@ -5,6 +5,9 @@
 {$custom_fields = $videoFields[4]}
 {$required_fields=$userquery->load_signup_fields()|@array_filter}
 
+{$video_max_price = $Cbucket->configs['video_max_price']}
+{$audio_max_price = $Cbucket->configs['audio_max_price']}
+
 {$config_for_mp4 = $Cbucket->configs['stay_mp4']}
 
 <div class="uploaderContainer clearfix" id="uploaderContainer">
@@ -20,7 +23,7 @@
                 <!-- <p>Video can be 1000 MB in size, 120 Min in Duration and Any common format<br>You can also upload HD videos</p> -->
             </div>
             <!-- <a id="uploadFiles" class="btn btn-success" href="javascript:;">Upload</a> -->
-            
+
         </div>
     </div>
 </div>
@@ -28,7 +31,7 @@
     <div class="uploadingProgressContainer">
     </div>
     <div class="realProgressBars">
-        
+
     </div>
     <div class="align-right hidden" id="uploadMore">
         <a href="#" class="btn btn-primary uploadMoreVideos" id="uploadMoreVideos">{lang code="upload_more_videos"}</a>
@@ -47,6 +50,17 @@
                 </fieldset>
                 <div class="requiredFields">
 
+                    <input type="hidden" name="file_type" id="file_type" value="{$file_type}">
+
+                    {if $file_type == 'audio'}
+                    <h4>{lang code="audio_type"}</h4>
+                    <div class="typesContainer">
+                        <input type="radio" name="video_type" id="radio_audiobook" value="audiobook" checked onchange="unset_ad()">
+                        <label for="radio_video">{lang code="audiobook"}</label><br>
+                        <input type="radio" name="video_type" id="radio_podcast" value="podcast" onchange="set_ad()">
+                        <label for="radio_ad">{lang code="podcast"}</label>
+                    </div>
+                    {else}
                     <h4>{lang code="video_type"}</h4>
                     <div class="typesContainer">
                         <input type="radio" name="video_type" id="radio_video" value="video" checked onchange="unset_ad()">
@@ -54,6 +68,7 @@
                         <input type="radio" name="video_type" id="radio_ad" value="ad" onchange="set_ad()">
                         <label for="radio_ad">{lang code="advertisement"}</label>
                     </div>
+                    {/if}
 
                   {foreach $requiredFields.fields as $field}
                         <div class="form-group">
@@ -71,8 +86,8 @@
                         {/if}
                         </div>
                     {/foreach}
-                  
-                    
+
+
                     <div id= "div_duration" class="form-group hidden">
                         <label for="duration">Duration</label>
                         <input type="text" placeholder="" name="duration" id="duration" class="form-control" cols="45">
@@ -84,7 +99,7 @@
                         <input  class="thumb12"  name="thumb12" type="file" placeholder=""   class="form-control" cols="45">
                     </div> -->
 
-            
+
                     {ANCHOR place="upload_video_form"}
                 </div>
                 {if $custom_flag && $custom_fields!=""}
@@ -109,7 +124,7 @@
                                     {$formObj->createField($field)}
                                 {/if}
                                 </div>
-                            {/foreach}    
+                            {/foreach}
                         </div>
                     </div>
                 {/if}
@@ -134,10 +149,10 @@
                                 {$formObj->createField($field)}
                             {/if}
                             </div>
-                        {/foreach}    
+                        {/foreach}
                     </div>
                 </div>
-  
+
                 <div class="formSection clear">
                     <h4>{$sharingOptions.group_name}<i class="glyphicon glyphicon-chevron-down pull-right"></i></h4>
                     <div class="sectionContent hidden">
@@ -171,7 +186,7 @@
                             <input type="hidden" id="limit_price" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="total_price">{lang code="total_price"}</label>
+                            <label for="total_price">{lang code="total_price"} ({lang code="max"}: $<span id="max_price">{$video_max_price}</span>)</label>
                             <input type="text" id="total_price" class="form-control" name="total_price" value="0" onchange="payment_slide()">
                         </div>
                         <div class="form-group">
@@ -346,12 +361,12 @@
 
                 <div class="pad-bottom-sm text-right">
                     <button class="btn btn-primary btn-lg"   id="saveVideoDetails">{lang code="submit_now"}</button>
-                </div>  
+                </div>
             </div>
         </div>
         <div class="col-md-4 uploadFormSidebarDiv">
 
-            <h4>{$categories.title}</h4>
+            <h4>{if $file_type == 'audio'}{lang code="audio_category"}{else}{$categories.title}{/if}</h4>
             <small>{$categories.hint_1}</small>
             <div class="categoriesContainer">
                 {$categories.label_class='checkbox'}
@@ -364,6 +379,14 @@
             <div class="form-group" id="video_attach">
                 <input type="file" id="video_attach_file" name="video_attach_file">
             </div>
+
+            <br><br>
+            {if $file_type == 'audio'}
+            <h4>{lang code="background_image"}</h4>
+            <div class="form-group" id="audio_background_image">
+                <input type="file" id="audio_image_file" name="audio_image_file">
+            </div>
+            {/if}
 
         </div>
     </div>
@@ -394,6 +417,20 @@
         $(document).ready(function () {
             $('#video_password').parent('.form-group').remove();
             $('#video_users').parent('.form-group').remove();
+
+            var menu_2th = $('#left-menu .menu-container ul li:eq(1)');
+            if ($(menu_2th).text() == 'Videos') $('#left-menu .menu-container ul li:eq(1)').remove();
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const file_type = urlParams.get('type');
+
+            if (file_type == 'audio') {
+
+                $('#selectFiles').text('Select Audio');
+
+
+            }
+
         });
 
         function set_ad() {

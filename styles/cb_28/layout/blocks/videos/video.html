@@ -52,6 +52,7 @@
 <div class="clearfix video-info">
 	<h2 class="title"><a href="{videoLink($video)}">{$video.title|truncate:50}</a></h2>
 	<span class="author">{lang code="by"}&nbsp;<a href="{$userquery->profile_link($video)}">{$video.username}</a></span>
+	<span class="earning_per_centisec">{lang code="earning_per_centisecond"}: ${number_format(((float)$video.price_per_sec/100), 4)}</span>
 	<div class="clearfix views-date">
 		<span>{$video.views}&nbsp;{lang code="views"}</span>
 		<time class="date" datetime="2016-15-03">{$video.date_added|niceTime}</time>
@@ -73,7 +74,13 @@
 		class="video-link"
 		{/if}
 		href="{videoLink($video)}" title="{$video.title|title}">
+
+		{if $video.background_image != null && $video.background_image != ''}
+		<img class="lazy img-responsive" src="{$video.background_image}">
+		{else}
 		<img class="lazy img-responsive" src="{getThumb vdetails=$video size=416x260 }">
+		{/if}
+
 		</a>
 		<img src="{$theme}/images/thumb-ratio.png" class="thumb-ratio" alt="">
 
@@ -94,6 +101,8 @@
 	<div class="clearfix video-info">
 		<h2 class="title"><a href="{videoLink($video)}">{$video.title|truncate:50}</a></h2>
 		<span class="author">{lang code="by"}&nbsp;<a href="{$userquery->profile_link($video)}">{$video.username}</a></span>
+		<span class="earning_per_centisec">{lang code="earning_per_centisecond"}: ${number_format(((float)$video.price_per_sec/100), 4)}</span>
+		<span class="remaining_budget">{lang code="remaining_budget"}: ${number_format(((float)$video.remaining_price), 2)}</span>
 		<div class="clearfix views-date">
 			<span>{$video.views}&nbsp;{lang code="views"}</span>
 			<time class="date" datetime="2016-15-03">{$video.date_added|niceTime}</time>
@@ -117,7 +126,13 @@
 		class="video-link"
 		{/if}
 		href="{videoLink($video)}" title="{$video.title|title}">
+
+		{if $video.background_image != null && $video.background_image != ''}
+		<img class="lazy img-responsive" src="{$video.background_image}">
+		{else}
 		<img class="lazy img-responsive" src="{getThumb vdetails=$video size=416x260 }">
+		{/if}
+
 		</a>
 		<img src="{$theme}/images/thumb-ratio.png" class="thumb-ratio" alt="">
 
@@ -135,6 +150,104 @@
 	<div class="clearfix video-info">
 		<h2 class="title"><a href="{videoLink($video)}">{$video.title|truncate:50}</a></h2>
 		<span class="author">{lang code="by"}&nbsp;<a href="{$userquery->profile_link($video)}">{$video.username}</a></span>
+		<span class="earning_per_centisec">{lang code="earning_per_centisecond"}: ${number_format(((float)$video.price_per_sec/100), 4)}</span>
+		<span class="remaining_budget">{lang code="remaining_budget"}: ${number_format(((float)$video.remaining_price), 2)}</span>
+		<div class="clearfix views-date">
+			<span>{$video.views}&nbsp;{lang code="views"}</span>
+			<time class="date" datetime="2016-15-03">{$video.date_added|niceTime}</time>
+		</div>
+	</div>
+</div>
+{/if}
+
+{if $display_type=='audiobookHome'}
+{if $total_vids}
+<div style="display: none" id="total_audiobooks_recent">{$total_vids}</div>
+{/if}
+<div style="display: none" class="item-video recentAppending">
+	<div class="clearfix thumb-holder">
+		<!-- <a class="video-link cd-popup-trigger" href="{videoLink($video)}" onclick="_cb.getModalVideo({$video.videoid})" title="{$video.title|title}"> -->
+		<!--class="video-link cd-popup-trigger" onclick="_cb.getModalVideo({$video.videoid})"-->
+		<a {if config('popup_video') == 'yes'}
+		class="video-link"
+		{else}
+		class="video-link"
+		{/if}
+		href="{videoLink($video)}" title="{$video.title|title}">
+
+		{if $video.background_image != null && $video.background_image != ''}
+		<img class="lazy img-responsive" src="{$video.background_image}">
+		{else}
+		<img class="lazy img-responsive" src="{$baseurl}/files/thumbs/processing.jpg">
+		{/if}
+
+		</a>
+		<img src="{$theme}/images/thumb-ratio.png" class="thumb-ratio" alt="">
+
+		{ANCHOR place='in_video_thumb' data=$video}
+		<button data-quick="quick-{$video.videoid}"
+				class="icon-plus2 add_icon cb_quickie cb-btn-quick-{$video.videoid} {if in_array($video.videoid, $qlist_vids)}icon-tick{/if}" vtitle="{$video.title}" v-id="{$video.videoid}" vlink="{videoLink($video)}" vthumb="{getThumb vdetails=$video size=600x338 }" vduration="{$video.duration|SetTime}" title="Add {$video.title} to Quicklist">
+		</button>
+		<span class="total_price">${$video.total_price} (${number_format((float)$video.remaining_price, 2)})</span>
+		{if $user_det == ''}
+		<span class="watch_color red"></span>
+		{/if}
+		<span class="duration" title="Video duration : {if $video.duration>1}{$video.duration|SetTime}{else}00:00{/if}">{if $video.duration>1}{$video.duration|SetTime}{else}00:00{/if}</span>
+
+	</div>
+	<div class="clearfix video-info">
+		<h2 class="title"><a href="{videoLink($video)}">{$video.title|truncate:50}</a></h2>
+		<span class="author">{lang code="by"}&nbsp;<a href="{$userquery->profile_link($video)}">{$video.username}</a></span>
+		<span class="earning_per_centisec">{lang code="earning_per_centisecond"}: ${number_format(((float)$video.price_per_sec/100), 4)}</span>
+		<span class="remaining_budget">{lang code="remaining_budget"}: ${number_format(((float)$video.remaining_price), 2)}</span>
+		<div class="clearfix views-date">
+			<span>{$video.views}&nbsp;{lang code="views"}</span>
+			<time class="date" datetime="2016-15-03">{$video.date_added|niceTime}</time>
+		</div>
+	</div>
+</div>
+{/if}
+
+{if $display_type=='podcastHome'}
+{if $total_vids}
+<div style="display: none" id="total_podcasts_recent">{$total_vids}</div>
+{/if}
+<div style="display: none" class="item-video recentAppending">
+	<div class="clearfix thumb-holder">
+		<!-- <a class="video-link cd-popup-trigger" href="{videoLink($video)}" onclick="_cb.getModalVideo({$video.videoid})" title="{$video.title|title}"> -->
+		<!--class="video-link cd-popup-trigger" onclick="_cb.getModalVideo({$video.videoid})"-->
+		<a {if config('popup_video') == 'yes'}
+		class="video-link"
+		{else}
+		class="video-link"
+		{/if}
+		href="{videoLink($video)}" title="{$video.title|title}">
+
+		{if $video.background_image != null && $video.background_image != ''}
+		<img class="lazy img-responsive" src="{$video.background_image}">
+		{else}
+		<img class="lazy img-responsive" src="{$baseurl}/files/thumbs/processing.jpg">
+		{/if}
+
+		</a>
+		<img src="{$theme}/images/thumb-ratio.png" class="thumb-ratio" alt="">
+
+		{ANCHOR place='in_video_thumb' data=$video}
+		<button data-quick="quick-{$video.videoid}"
+				class="icon-plus2 add_icon cb_quickie cb-btn-quick-{$video.videoid} {if in_array($video.videoid, $qlist_vids)}icon-tick{/if}" vtitle="{$video.title}" v-id="{$video.videoid}" vlink="{videoLink($video)}" vthumb="{getThumb vdetails=$video size=600x338 }" vduration="{$video.duration|SetTime}" title="Add {$video.title} to Quicklist">
+		</button>
+		<span class="total_price">${$video.total_price} (${number_format((float)$video.remaining_price, 2)})</span>
+		{if $user_det == ''}
+		<span class="watch_color red"></span>
+		{/if}
+		<span class="duration" title="Video duration : {if $video.duration>1}{$video.duration|SetTime}{else}00:00{/if}">{if $video.duration>1}{$video.duration|SetTime}{else}00:00{/if}</span>
+
+	</div>
+	<div class="clearfix video-info">
+		<h2 class="title"><a href="{videoLink($video)}">{$video.title|truncate:50}</a></h2>
+		<span class="author">{lang code="by"}&nbsp;<a href="{$userquery->profile_link($video)}">{$video.username}</a></span>
+		<span class="earning_per_centisec">{lang code="earning_per_centisecond"}: ${number_format(((float)$video.price_per_sec/100), 4)}</span>
+		<span class="remaining_budget">{lang code="remaining_budget"}: ${number_format(((float)$video.remaining_price), 2)}</span>
 		<div class="clearfix views-date">
 			<span>{$video.views}&nbsp;{lang code="views"}</span>
 			<time class="date" datetime="2016-15-03">{$video.date_added|niceTime}</time>
@@ -220,6 +333,7 @@
 				class="icon-plus2 cb_quickie cb-btn-quick-{$video.videoid} {if in_array($video.videoid, $qlist_vids)}icon-tick{/if}" vtitle="{$video.title}" v-id="{$video.videoid}" vlink="{videoLink($video)}" vthumb="{getThumb vdetails=$video size=600x338 }" vduration="{$video.duration|SetTime}" title="Add {$video.title} to Quicklist">
 		</button>
 		<span class="total_price">${$video.total_price}</span>
+		<span class="earning_per_centisec">{lang code="earning_per_centisecond"}: ${number_format(((float)$video.price_per_sec/100), 4)}</span>
 		{if $user_det!=''}
 		<span class="watch_color{if (float)$user_det.balance >= (float)$video.total_price} blue{else if (float)$user_det.balance < (float)$video.total_price && 0 < (float)$user_det.balance} yellow{else} red{/if}"></span>
 		{/if}

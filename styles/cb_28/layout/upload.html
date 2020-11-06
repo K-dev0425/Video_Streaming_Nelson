@@ -72,6 +72,8 @@
 
 	var session_data = {};
 
+	var uploaded_file_name = '';
+
 	(function(window){
 		$(document).ready(function() {
 			 setTimeout(function(){
@@ -138,8 +140,6 @@
                         vid.onloadedmetadata = function () {
                             window.URL.revokeObjectURL(vid.src);
                             duration = vid.duration;
-
-                            console.log(duration);
 
                             session_data.duration = duration;
 
@@ -326,6 +326,7 @@
 						$("#duration").removeClass("hidden");
 					}
 					var fileName = serverResponse.file_name;
+					uploaded_file_name = fileName;
 					var uploadForm = $("#tab"+currentFileIndex+" form");
 					totalUploaded++;
 
@@ -376,6 +377,9 @@
 							//window.location.href = baseurl+"/?moreMsg="+theVideoId;
 							var self = this;
 
+							var total_price = $('#total_price').val();
+							// var max_price = ''
+
 							//var fd = new FormData(document.getElementById( "updateVideoInfoForm" ));
 
 							var price_per_sec = $('#price_per_sec').val();
@@ -396,25 +400,17 @@
 							    alert("You're uploading a content video. People will pay to watch your material.");
 							}
 
-
-                            // var attach_data = new FormData();
-                            // attach_data.append('video_attach', attach_data);
-                            // attach_data.append('insertVideo', "yes");
-                            // attach_data.append('title', fileDetails.name);
-                            // attach_data.append('file_name', fileName);
-                            // attach_data.append('vid_duration', session_data.duration);
-
                             $.ajax({
                                 url : baseurl + "/actions/file_uploader.php",
                                 type : "post",
                                 data : {
                                     insertVideo : "yes",
                                     title : fileDetails.name,
-                                    file_name : fileName,
+                                    file_name : uploaded_file_name,
                                     vid_duration: session_data.duration,
                                 }
                             }).success(function(msg){
-                                //console.log(msg);
+                                console.log(msg);
                                 res = $.parseJSON(msg);
                                 fileId = res.videoid;
                                 theVideoId = fileId;

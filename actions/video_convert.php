@@ -90,7 +90,7 @@
 		$renamed = rename($temp_file,$orig_file);
 
 	if ($renamed){
-		$log->writeLine("Conversion queue","File has been moved from Temporary dir to Conversion Queue", true);
+		$log->writeLine("Conversion queue","File has been moved from Temporary dir to Conversion Queue, Orig_File: ".$orig_file,  true);
 	}else{
 		$log->writeLine("Conversion queue","Some Thing Went wrong in moving the file to Conversion Queue", true);
 	}

@@ -74,12 +74,10 @@ switch ($mode) {
              CURLOPT_SSL_VERIFYPEER=> false,
              CURLOPT_HTTPHEADER => array("Expect:"),
             );
-
             $array = array("update"=>TRUE);
             //curl_setopt($ch,CURLOPT_POSTFIELDS,$array);
             $charray = $ch_opts;
             $charray[CURLOPT_POSTFIELDS] = $array;
-
             curl_setopt_array($ch,$charray);
             curl_exec($ch);
             curl_close($ch);*/

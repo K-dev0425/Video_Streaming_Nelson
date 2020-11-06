@@ -150,6 +150,9 @@
 										{if has_access('allow_video_upload',true,true) && isSectionEnabled('videos')}
 										<li class="up_vid"><a href="{link name='upload'}">{lang code="upload_video"}<i class="icon-video visible-xs"></i></a></li>
 										{/if}
+										{if isSectionEnabled('audios')}
+										<li class="up_aud"><a href="{link name='upload'}?type=audio">{lang code="upload_audio"}<i class="icon-audio visible-xs"></i></a></li>
+										{/if}
 										{if isSectionEnabled('photos')}
 										<li class="up_img"><a href="{link name='photo_upload'}">{lang code="upload_photo"}<i class="icon-photo visible-xs"></i></a></li>
 										{/if}
@@ -427,11 +430,18 @@
 		color: #fff!important;
 		background: #252525;
 	}
-	#left-menu.dark, header.dark, .myaccount-dd a.dark {
+	header.dark, .myaccount-dd a.dark {
 		background: #111!important;
 	}
 	.dark .cb-box {
 		color: #000;
+	}
+	#left-menu.dark {
+		background: #2d3043!important;
+		border-right: 1px solid #454554
+	}
+	#container.dark {
+		background: #1f212e;
 	}
 </style>
 
@@ -455,7 +465,10 @@
 			{/foreach}
 
 			<li>
-				<a href="http://lookmyad.com/clip/ads.php">Ads</a>
+				<a href="{$baseurl}/ads.php">Ads</a>
+			</li>
+			<li>
+				<a href="{$baseurl}/#">Subscription</a>
 			</li>
 			{ANCHOR place="cb_28_head"}
 		</ul>
@@ -477,6 +490,15 @@
 </div>
 
 <script>
+
+	$(document).ready(function () {
+	    var menu_2th = $('#left-menu .menu-container ul li:eq(1)');
+	    if ($(menu_2th).text() == 'Videos') $('#left-menu .menu-container ul li:eq(1)').remove();
+    });
+
+    var menu_2th = $('#left-menu .menu-container ul li:eq(1)');
+    if ($(menu_2th).text() == 'Videos') $('#left-menu .menu-container ul li:eq(1)').remove();
+
     function add_dark(elem) {
         if ($(elem).prop('checked'))
             $('.bright').addClass('dark');

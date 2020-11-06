@@ -733,10 +733,10 @@ h1 {
   color: #757575;
   padding: 8px;
   background: #fff;
-  height: 100px;
+  height: 115px;
   position: relative; }
   .videos .video-info .title {
-    max-height: 40px;
+    max-height: 20px;
     overflow: hidden;
     color: #000;
     font-size: 18px;
@@ -5498,6 +5498,10 @@ textarea#comment_box {
 
 .well.well-info {
   color: #000!important;
+}
+
+.earning_per_centisec {
+  font-size: 15px;
 }
 
 @media (max-width: 992px) {

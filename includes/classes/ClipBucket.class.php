@@ -39,7 +39,7 @@ class ClipBucket
     var $cbinfo = array();
     var $search_types = array();
     var $theUploaderDetails = array();
-  #  var $version = VERSION;
+    #  var $version = VERSION;
 
     /**
      * All Functions that are called
@@ -82,7 +82,7 @@ class ClipBucket
         $this->BASEDIR = $this->getBasedir();
         //Listing Common JS File
         $this->addJS(array
-            (
+        (
             'jquery_plugs/cookie.js' => 'global',
             'functions.js' => 'global',
         ));
@@ -103,7 +103,7 @@ class ClipBucket
 
         if (!isset($_GET['sort'])  || !isset($sort_array[$_GET['sort']]) )
             $_GET['sort'] = 'most_recent';
-        
+
 
         $time_array = time_links();
         //$time_array = array_key_
@@ -224,82 +224,82 @@ class ClipBucket
     {
 
         $menu_array = array
-            (
+        (
             //Statistics
             'Stats And Configurations' =>
-            array(
-                'Reports &amp; Stats' => 'reports.php',
-                'Website Configurations' => 'main.php',
-                'Email Settings' => 'email_settings.php',
-                'Language Settings' => 'language_settings.php',
-                'Add New Phrases' => 'add_phrase.php',
-                'Manage Pages' => 'manage_pages.php',
-                'Manage Comments' => 'comments.php',
-                'Update Logo'=>'upload_logo.php',
-            ),
+                array(
+                    'Reports &amp; Stats' => 'reports.php',
+                    'Website Configurations' => 'main.php',
+                    'Email Settings' => 'email_settings.php',
+                    'Language Settings' => 'language_settings.php',
+                    'Add New Phrases' => 'add_phrase.php',
+                    'Manage Pages' => 'manage_pages.php',
+                    'Manage Comments' => 'comments.php',
+                    'Update Logo'=>'upload_logo.php',
+                ),
             //Video
             'Videos' =>
-            array(
-                'Videos Manager' => 'video_manager.php',
-                'Manage Categories' => 'category.php',
-                'List Flagged Videos' => 'flagged_videos.php',
-                'Upload Videos' => 'mass_uploader.php',
-                'List Inactive Videos' => 'video_manager.php?search=search&active=no'
-            ),
+                array(
+                    'Videos Manager' => 'video_manager.php',
+                    'Manage Categories' => 'category.php',
+                    'List Flagged Videos' => 'flagged_videos.php',
+                    'Upload Videos' => 'mass_uploader.php',
+                    'List Inactive Videos' => 'video_manager.php?search=search&active=no'
+                ),
             //Users
             'Users' =>
-            array(
-                'Manage Members' => 'members.php',
-                'Add Member' => 'add_member.php',
-                'Manage categories' => 'user_category.php',
-                'User Levels' => 'user_levels.php',
-              //  'Search Members' => 'members.php?view=search',
-                'Inactive Only' => 'members.php?search=yes&status=ToActivate',
-                'Active Only' => 'members.php?search=yes&status=Ok',
-                'Reported Users' => 'flagged_users.php',
-                'Mass Email' => 'mass_email.php'
-            ),
+                array(
+                    'Manage Members' => 'members.php',
+                    'Add Member' => 'add_member.php',
+                    'Manage categories' => 'user_category.php',
+                    'User Levels' => 'user_levels.php',
+                    //  'Search Members' => 'members.php?view=search',
+                    'Inactive Only' => 'members.php?search=yes&status=ToActivate',
+                    'Active Only' => 'members.php?search=yes&status=Ok',
+                    'Reported Users' => 'flagged_users.php',
+                    'Mass Email' => 'mass_email.php'
+                ),
             //Groups
-           /* 'Groups' =>
-            array(
-                'Add Group' => 'add_group.php',
-                'Manage Groups' => 'groups_manager.php',
-                'Manage Categories' => 'group_category.php?view=show_category',
-                'View Inactive Groups' => 'groups_manager.php?active=no&search=yes',
-                'View Reported Groups' => 'flagged_groups.php',
-            ),*/
+            /* 'Groups' =>
+             array(
+                 'Add Group' => 'add_group.php',
+                 'Manage Groups' => 'groups_manager.php',
+                 'Manage Categories' => 'group_category.php?view=show_category',
+                 'View Inactive Groups' => 'groups_manager.php?active=no&search=yes',
+                 'View Reported Groups' => 'flagged_groups.php',
+             ),*/
             //Advertisments
             'Advertisement' =>
-            array(
-                'Manage Advertisments' => 'ads_manager.php',
-                'Manage Placements' => 'ads_add_placements.php',
-            ),
+                array(
+                    'Manage Advertisments' => 'ads_manager.php',
+                    'Manage Placements' => 'ads_add_placements.php',
+                ),
             //Template Manager
             'Templates And Players' =>
-            array(
-                'Templates Manager' => 'templates.php',
-                'Templates Editor' => 'template_editor.php',
-                'Players Manager' => 'manage_players.php',
-                'Player Settings' => 'manage_players.php?mode=show_settings'
-            ),
+                array(
+                    'Templates Manager' => 'templates.php',
+                    'Templates Editor' => 'template_editor.php',
+                    'Players Manager' => 'manage_players.php',
+                    'Player Settings' => 'manage_players.php?mode=show_settings'
+                ),
             //Plugin Manager
             'Plugin Manager' =>
-            array(
-                'Plugin Manager' => 'plugin_manager.php'
-            ),
+                array(
+                    'Plugin Manager' => 'plugin_manager.php'
+                ),
             //Tool Box
             'Tool Box' =>
-            array(
-                //'ClipBucket Module Manager'=>'module_manager.php',
-                'PHP Info' => 'phpinfo.php',
-                'Server Modules Info' => 'cb_mod_check.php',
-                'Conversion Queue Manager' => 'cb_conversion_queue.php',
-                'ReIndexer' => 'reindex_cb.php',
-                'Conversion Lab &alpha;' => 'conversion_lab.php',
-                'Repair video duration' => 'repair_vid_duration.php',
-                'Maintenance' => 'maintenance.php',
-            //'View Encoding Status'=>'',
-            ),
+                array(
+                    //'ClipBucket Module Manager'=>'module_manager.php',
+                    'PHP Info' => 'phpinfo.php',
+                    'Server Modules Info' => 'cb_mod_check.php',
+                    'Conversion Queue Manager' => 'cb_conversion_queue.php',
+                    'ReIndexer' => 'reindex_cb.php',
+                    'Conversion Lab &alpha;' => 'conversion_lab.php',
+                    'Repair video duration' => 'repair_vid_duration.php',
+                    'Maintenance' => 'maintenance.php',
+                    //'View Encoding Status'=>'',
+                ),
         );
 
 
@@ -332,26 +332,26 @@ class ClipBucket
                 'List Inactive Videos' => 'video_manager.php?search=search&active=no',
                 'Notification settings' => 'notification_settings.php'
             );
-        
+
         if ($per['member_moderation'] == "yes")
         {
             $NewMenu['Users'] = array(
                 'Manage Members' => 'members.php',
                 'Add Member' => 'add_member.php',
                 'Manage categories' => 'user_category.php',
-               
-               // 'Search Members' => 'members.php?view=search',
+
+                // 'Search Members' => 'members.php?view=search',
                 'Inactive Only' => 'members.php?search=yes&status=ToActivate',
                 'Active Only' => 'members.php?search=yes&status=Ok',
                 'Reported Users' => 'flagged_users.php',
                 'Mass Email' => 'mass_email.php'
             );
-            
+
             if($per['allow_manage_user_level']=='yes' || $userquery->level == 1)
-            $NewMenu['Users']['User Levels'] = 'user_levels.php';
+                $NewMenu['Users']['User Levels'] = 'user_levels.php';
         }
-        
-        
+
+
         /*if ($per['group_moderation'] == "yes")
             $NewMenu['Groups'] = array('Add Group' => 'add_group.php',
                 'Manage Groups' => 'groups_manager.php',
@@ -529,8 +529,8 @@ class ClipBucket
         global $cbpage;
         $this->head_menu[] = array('name' => lang("menu_home"),'icon'=>'<i class="fa fa-home"></i>', 'link' => BASEURL, "this" => "home", "section" => "home", "extra_attr" => "");
         $this->head_menu[] = array('name' => lang("videos"), 'icon' => '<i class="fa fa-video-camera"></i>', 'link' => cblink(array('name' => 'videos')), "this" => "videos", "section" => "home");
-        $this->head_menu[] = array('name' => lang("photos"), 'icon' => '<i class="fa fa-camera"></i>','link' => cblink(array('name' => 'photos')), "this" => "photos");
-        $this->head_menu[] = array('name' => lang("menu_channels"),'icon' => '<i class="fa fa-desktop"></i>', 'link' => cblink(array('name' => 'channels')), "this" => "channels", "section" => "channels");
+//        $this->head_menu[] = array('name' => lang("photos"), 'icon' => '<i class="fa fa-camera"></i>','link' => cblink(array('name' => 'photos')), "this" => "photos");
+//        $this->head_menu[] = array('name' => lang("menu_channels"),'icon' => '<i class="fa fa-desktop"></i>', 'link' => cblink(array('name' => 'channels')), "this" => "channels", "section" => "channels");
         $this->head_menu[] = array('name' => lang("collections"), 'icon' => '<i class="fa fa-bars"></i>', 'link' => cblink(array('name' => 'collections')), "this" => "collections", "section" => "collections");
         $this->head_menu[] = array('name' => lang("Groups"), 'icon' => '<i class="fa fa-users"></i>', 'link' => cblink(array('name' => 'groups')), "this" => "groups", "section" => "groups");
 
@@ -551,7 +551,7 @@ class ClipBucket
 
 
         if (!$params['tag'])
-        //$params['tag'] = 'li';
+            //$params['tag'] = 'li';
             if (!$params['class'])
                 $params['class'] = '';
 
@@ -668,14 +668,14 @@ class ClipBucket
         //$this->foot_menu[] = array('name' => lang("about_us"), 'link' => cblink(array('name' => 'about_us')), "this" => "home");
 
 
-        
+
         //$this->foot_menu[] = array('name' => lang("my_account"), 'link' => cblink(array('name' => 'my_account')), "this" => "home");
 
         $pages = $cbpage->get_pages(array('active' => 'yes', 'display_only' => 'yes', 'order' => 'page_order ASC'));
 
         if ($pages)
             foreach ($pages as $p)
-               $this->foot_menu[] = array('name' => lang($p['page_name']), 'link' => $cbpage->page_link($p), "this" => "home");
+                $this->foot_menu[] = array('name' => lang($p['page_name']), 'link' => $cbpage->page_link($p), "this" => "home");
 
 //		if($cbpage->is_active(2))
 //			$this->foot_menu[] = array('name'=>lang("privacy_policy"),'link'=>$cbpage->get_page_link(2),"this"=>"home");

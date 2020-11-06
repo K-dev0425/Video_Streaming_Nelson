@@ -322,6 +322,8 @@
 
         var userid = '{userid()}';
 
+        var video_background_image = '{$video.background_image}';
+
         var n = 0;
 
         var video_type = '{$video.type}';
@@ -347,6 +349,17 @@
 				'<div class="vjs-cb-header-caption vjs-item"><div>Already Paid Time: <span id="already">{$already_paid_time}</span>s</div><div>Balance(after paid): $<span id="balance_after">{if userid()}{$user_det.balance}{else}0{/if}</span></div></div>';
 
             $('.video-js').append(text);
+
+            if (video_background_image != '') {
+                $(".vjs-poster").css("background-image", "url(" + video_background_image +")");
+                $(".vjs-poster").css("background-size", "auto 100%");
+
+                $('video.vjs-tech').removeAttr('poster');
+                $("video.vjs-tech").css("background-image", "url(" + video_background_image +")");
+                $("video.vjs-tech").css("background-size", "auto 100%");
+                $("video.vjs-tech").css("background-repeat", "no-repeat");
+                $("video.vjs-tech").css("background-position", "50% 50%");
+			}
 
             // $('.vjs-modal-dialog-content').append('<form id="survey_form" action="survey.php" method="post"></form>');
 
@@ -462,7 +475,7 @@
 
                 current_second = Math.floor(parseFloat(this.currentTime()));
 
-                if (userid == '' && current_second >= start_paying_time) {
+                if (userid == '' && current_second >= start_paying_time && price_per_sec > 0) {
                     this.pause();
                     n++;
                     if (n === 1)
@@ -516,6 +529,12 @@
 
             });
 
+            video_player.on('loadeddata', function () {
+                if (video_background_image != '') {
+                    $('.vjs-poster').css('display', 'inline-block');
+                }
+            });
+
             video_player.on('play', function () {
 				setTimeout(fadeInfo, 6000);
             });
@@ -552,8 +571,6 @@
             });
 
         }
-
-
 
 
         function pay_video() {

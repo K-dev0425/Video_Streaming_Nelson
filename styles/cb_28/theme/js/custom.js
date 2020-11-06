@@ -206,7 +206,7 @@ $(document).ready(function(){
 
 
 function homePageVideos(qlist_items) {
-	$('#container').on("click","#recent_load_more, #featured_load_more, #recentads_load_more", function(){
+	$('#container').on("click","#recent_load_more, #featured_load_more, #recentads_load_more, #recentaudiobooks_load_more, #recentpodcasts_load_more", function(){
 
 		var balance = '';
 		if ($('#header_price').length === 1) {
@@ -229,6 +229,8 @@ function homePageVideos(qlist_items) {
 		moreRecent = true;
 		moreFeatured = true;
 		moreRecentAds = true;
+		moreRecentAudiobooks = true;
+		moreRecentPodcasts = true;
 
 		featuredFound = '';
 		if (loadHit == 1) {
@@ -238,18 +240,26 @@ function homePageVideos(qlist_items) {
 			featuredSect = $('#container').find('#total_videos_featured').text();
 			recentSect = $('#container').find('#total_videos_recent').text();
 			recentAdSect = $('#container').find('#total_ads_recent').text();
+			recentAudiobookSect = $('#container').find('#total_audiobooks_recent').text();
+			recentPodcastSect = $('#container').find('#total_podcasts_recent').text();
 
 			totalFeaturedVids = featuredSect;
 			totalRecentVids = recentSect;
 			totalRecentAds = recentAdSect;
+			totalRecentAudiobooks = recentAudiobookSect;
+			totalRecentPodcasts = recentPodcastSect;
 
 			featuredShown = loadHit * loadHit - loadLimit;
 			recentShown = loadHit * loadHit - loadLimit;
 			recentAdShown = loadHit * loadHit - loadLimit;
+			recentAudiobookShown = loadHit * loadHit - loadLimit;
+			recentPodcastShown = loadHit * loadHit - loadLimit;
 
 			gotMoreFeatured = parseInt(totalFeaturedVids) - parseInt(featuredShown);
 			gotMoreRecent = parseInt(totalRecentVids) - parseInt(recentShown);
 			gotMoreRecentAd = parseInt(totalRecentAds) - parseInt(recentAdShown);
+			gotMoreRecentAudiobook = parseInt(totalRecentAudiobooks) - parseInt(recentAudiobookShown);
+			gotMoreRecentPodcast = parseInt(totalRecentPodcasts) - parseInt(recentPodcastShown);
 
 			if (gotMoreFeatured > 2) {
 				featuredFound = 2;
@@ -273,6 +283,20 @@ function homePageVideos(qlist_items) {
 				moreRecentAds = false;
 				recentFound = gotMoreRecentAd;
 			}
+
+            if (gotMoreRecentAudiobook > 6) {
+                recentFound = 3;
+            } else {
+                moreRecentAudiobooks = false;
+                recentFound = gotMoreRecentAudiobook;
+            }
+
+            if (gotMoreRecentPodcast > 6) {
+                recentFound = 3;
+            } else {
+                moreRecentPodcasts = false;
+                recentFound = gotMoreRecentPodcast;
+            }
 		}
 
         $.ajax({
@@ -306,6 +330,22 @@ function homePageVideos(qlist_items) {
 							var moveTo = $("#recentads_pre").last().offset().top();
 							thakkiLoading(moveTo);
 						}
+                    }
+                    else if (loadMode == 'recent_audiobook') {
+                        preLoadingBlock();
+                        var currWidth = $(window).width();
+                        if (loadHit >= 2 && currWidth > 767) {
+                            var moveTo = $("#recentaudiobooks_pre").last().offset().top();
+                            thakkiLoading(moveTo);
+                        }
+                    }
+                    else if (loadMode == 'recent_podcast') {
+                        preLoadingBlock();
+                        var currWidth = $(window).width();
+                        if (loadHit >= 2 && currWidth > 767) {
+                            var moveTo = $("#recentpodcasts_pre").last().offset().top();
+                            thakkiLoading(moveTo);
+                        }
                     }
 					else {
 						preLoadingBlock();
@@ -353,6 +393,24 @@ function homePageVideos(qlist_items) {
                             $("#recent_ads_sec").html('<div class="break2"></div><span class="well well-info btn-block">'+noRecent+'</span>');
                             return false;
 						}
+                        else if (loadMode == 'recent_audiobook') {
+                            for (var i = 0; i < recentFound; i++) {
+                                $(document).find('#recentaudiobooks_pre').append('<div class="item-video col-lg-4 col-md-4 col-sm-4 col-xs-6"><div class="thumb-video background-masker clearfix"></div><div class="loadingInfo video-info relative clearfix"><div class="background-masker heading clearfix"></div><div class="background-masker paragraph clearfix"></div><div class="background-masker clearfix views-date"></div></div></div>');
+                            }
+                            $('#recentaudiobooks_load_more').remove();
+                            $('#recentaudiobooks_pre').remove();
+                            $("#recent_audiobooks_sec").html('<div class="break2"></div><span class="well well-info btn-block">'+noRecent+'</span>');
+                            return false;
+                        }
+                        else if (loadMode == 'recent_podcast') {
+                            for (var i = 0; i < recentFound; i++) {
+                                $(document).find('#recentpodcasts_pre').append('<div class="item-video col-lg-4 col-md-4 col-sm-4 col-xs-6"><div class="thumb-video background-masker clearfix"></div><div class="loadingInfo video-info relative clearfix"><div class="background-masker heading clearfix"></div><div class="background-masker paragraph clearfix"></div><div class="background-masker clearfix views-date"></div></div></div>');
+                            }
+                            $('#recentpodcasts_load_more').remove();
+                            $('#recentpodcasts_pre').remove();
+                            $("#recent_podcasts_sec").html('<div class="break2"></div><span class="well well-info btn-block">'+noRecent+'</span>');
+                            return false;
+                        }
 					}
 					return true;
 				}
@@ -421,9 +479,56 @@ function homePageVideos(qlist_items) {
                         }
                     }
 				}
+
+                if (loadType == 'audiobook') {
+                    if (loadMode == 'recent_audiobook') {
+                        $('#recentaudiobooks_load_more').remove();
+                        $('#recentaudiobooks_pre').html('');
+                        $(data).appendTo('#recent_audiobooks_sec').fadeIn('slow');
+                        recentAudiobookSect = $('#container').find('#total_audiobooks_recent').text();
+                        recentAudiobookSect = parseInt(recentAudiobookSect);
+                        loadHit = parseInt(loadHit);
+                        loadLimit = parseInt(loadLimit);
+
+                        if (loadHit == 1 && loadLimit >= recentAudiobookSect) {
+                            moreRecentAudiobooks = false;
+                        }else if (loadHit * loadLimit >= recentAudiobookSect) {
+                            moreRecentAudiobooks = false;
+                        }
+
+                        if (moreRecentAudiobooks == true) {
+                            $(document).find('#recentaudiobooks-loadmore').append('<div class="clearfix text-center"><button id="recentaudiobooks_load_more" class="btn btn-loadmore" loadtype="audiobook" loadmode="recent_ad" loadlimit="'+loadLimit+'" loadhit="'+newloadHit+'">'+loadMoreLang+'</button></div>');
+                        }
+                    }
+                }
+
+                if (loadType == 'podcast') {
+                    if (loadMode == 'recent_podcast') {
+                        $('#recentpodcasts_load_more').remove();
+                        $('#recentpodcasts_pre').html('');
+                        $(data).appendTo('#recent_podcasts_sec').fadeIn('slow');
+                        recentPodcastSect = $('#container').find('#total_podcasts_recent').text();
+                        recentPodcastSect = parseInt(recentPodcastSect);
+                        loadHit = parseInt(loadHit);
+                        loadLimit = parseInt(loadLimit);
+
+                        if (loadHit == 1 && loadLimit >= recentPodcastSect) {
+                            moreRecentPodcasts = false;
+                        }else if (loadHit * loadLimit >= recentPodcastSect) {
+                            moreRecentPodcasts = false;
+                        }
+
+                        if (moreRecentPodcasts == true) {
+                            $(document).find('#recentpodcasts-loadmore').append('<div class="clearfix text-center"><button id="recentpodcasts_load_more" class="btn btn-loadmore" loadtype="podcast" loadmode="recent_podcast" loadlimit="'+loadLimit+'" loadhit="'+newloadHit+'">'+loadMoreLang+'</button></div>');
+                        }
+                    }
+                }
+
 				$('#container').find('#total_videos_recent').hide();
 				$('#container').find('#total_videos_featured').hide();
 				$('#container').find('#total_ads_recent').hide();
+				$('#container').find('#total_audiobooks_recent').hide();
+				$('#container').find('#total_podcasts_recent').hide();
 			}
 		});
 	});
@@ -436,6 +541,10 @@ function homePageVideos(qlist_items) {
 		$('#recent_load_more').hide();
 		$('#recentads_load_more').trigger("click");
 		$('#recentads_load_more').hide();
+        $('#recentaudiobooks_load_more').trigger("click");
+        $('#recentaudiobooks_load_more').hide();
+        $('#recentpodcasts_load_more').trigger("click");
+        $('#recentpodcasts_load_more').hide();
 	});
 }
 //on resize functions
