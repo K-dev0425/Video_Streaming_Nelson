@@ -34,6 +34,18 @@ if (isset($_POST['load_type'])) {
 
             $params['order'] = 'date_added DESC';
         }
+        if ($load_mode == 'recent_audiobook') {
+            //updated By Ricky
+            $params['type'] = 'audiobook';
+
+            $params['order'] = 'date_added DESC';
+        }
+        if ($load_mode == 'recent_podcast') {
+            //updated By Ricky
+            $params['type'] = 'podcast';
+
+            $params['order'] = 'date_added DESC';
+        }
         else {
             $params['order'] = 'views';
         }
@@ -63,6 +75,14 @@ if (isset($_POST['load_type'])) {
             $data = get_videos($params);
             break;
         case 'ad':
+            $params['count_only'] = false;
+            $data = get_videos($params);
+            break;
+        case 'audiobook':
+            $params['count_only'] = false;
+            $data = get_videos($params);
+            break;
+        case 'podcast':
             $params['count_only'] = false;
             $data = get_videos($params);
             break;
@@ -96,6 +116,12 @@ if (isset($_POST['load_type'])) {
         }
         if ($load_mode == 'recent_ad') {
             $display_type = 'adHome';
+        }
+        if ($load_mode == 'recent_audiobook') {
+            $display_type = 'audiobookHome';
+        }
+        if ($load_mode == 'recent_podcast') {
+            $display_type = 'podcastHome';
         }
         if ($load_mode == 'featured'){
             $display_type = 'featuredHome';

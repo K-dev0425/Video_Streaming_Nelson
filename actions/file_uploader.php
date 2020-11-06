@@ -11,6 +11,7 @@ require_once(dirname(dirname(__FILE__)) . "/includes/classes/sLog.php");
 //var_dump($_FILES);die();
 global $Cbucket;
 
+//global $uploaded_file_name;
 
 if ($_FILES['Filedata'])
     $mode = "upload";
@@ -92,7 +93,8 @@ switch ($mode) {
             if (error()) {
                 echo json_encode(array("error" => error("single")));
             } else {
-                echo json_encode(array("videoid" => $vid, "duration" => $_SESSION['duration'], "attach" => $attach_query));
+
+                echo json_encode(array("videoid" => $vid, "duration" => $_SESSION['duration'], "file_name" => $file_name));
             }
 
             exit();
@@ -148,10 +150,10 @@ switch ($mode) {
 
             #checking for if the right file is uploaded
             $content_type = get_mime_type($_FILES['Filedata']['tmp_name']);
-            if ($content_type != 'video') {
-                echo json_encode(array("status" => "400", "err" => "Invalid Content"));
-                exit();
-            }
+//            if ($content_type != 'video') {
+////                echo json_encode(array("status" => "400", "err" => "Invalid Content"));
+////                exit();
+////            }
 
             // pex($content_type,true);
 
@@ -294,15 +296,14 @@ switch ($mode) {
                 } else {
                     // for ubuntu or linux
 
-                    exec(php_path() . " -q " . BASEDIR . "/actions/video_convert.php {$targetFileName} {$file_name} {$file_directory} {$logFile} > /dev/null &");
+                    exec(php_path() . " -q " . BASEDIR . "/actions/video_convert.php {$targetFileName} {$file_name} {$file_directory} {$logFile} {$content_type} > /dev/null &");
                 }
             }
 
             $TempLogData = 'Video Converson File executed successfully with Target File > !' . $targetFileName;
             $log->writeLine('Video Conversion File Execution', $TempLogData, true);
 
-
-            echo json_encode(array("success" => "yes", "file_name" => $file_name, 'phpos' => PHP_OS));
+            echo json_encode(array("success" => "yes", "file_type" => $content_type, 'phpos' => PHP_OS, "file_name" => $file_name));
 
         }
         break;
@@ -326,13 +327,17 @@ switch ($mode) {
             $config_for_mp4 = $Cbucket->configs['stay_mp4'];
             $Upload->validate_video_upload_form();
             $data = get_video_details($_POST['videoid']);
-            $limit_price = $_POST['limit_price'];
+            $limit_price = isset($_POST['limit_price']) ? $_POST['limit_price'] : '';
             $total_price = $_POST['total_price'];
             $price_per_sec = $_POST['price_per_sec'];
             $start_paying = $_POST['start_paying'];
             $end_paying = $_POST['end_paying'];
             $input_duration = $_POST['input_duration'];
             $video_id = $_POST['videoid'];
+            $file_type = $_POST['file_type'];
+//            if ($file_type == 'audio')
+//                $type = $_POST['audio_type'];
+//            else
             $type = $_POST['video_type'];
             $allowed_min_age = $_POST['allowed_min_age'];
             $allowed_max_age = $_POST['allowed_max_age'];
@@ -367,6 +372,32 @@ switch ($mode) {
 
             }
 
+            if ($_FILES['audio_image_file']) {
+
+                $image_file = $_FILES['audio_image_file'];
+                $tempFile = $image_file['tmp_name'];
+
+                $content_type = get_mime_type($tempFile);
+
+                if ($content_type == 'image') {
+                    $original_file_name = $image_file['name'];
+
+                    $image_file_name = time() . '_' . $video_id;
+                    $file_directory = date('Y/m/d');
+
+                    @mkdir(VIDEOS_DIR . '/background_images/' . $file_directory, 0777, true);
+
+                    $targetFileName = $image_file_name . '.' . getExt($original_file_name);
+                    $file_url = VIDEOS_URL . '/background_images/' . $file_directory . '/' . $image_file_name . '.' . getExt($image_file['name']);
+
+                    move_uploaded_file($tempFile, VIDEOS_DIR . '/background_images/' . $file_directory . '/' . $image_file_name . '.' . getExt($image_file['name']));
+
+                    $image_query = "UPDATE " . tbl("video") . " SET background_image = '" . $file_url . "', type = '" . $type . "' where videoid = " . (int)$video_id;
+                    $db->Execute($image_query);
+                }
+
+            }
+
             $queryd = "";
 
             if (!isset($_POST['allowed_min_age']) || $allowed_min_age == '') {
@@ -379,8 +410,9 @@ switch ($mode) {
             $vid_file = VIDEOS_DIR . '/' . $data['file_directory'] . '/' . get_video_file($data, false, false);
 
 
-            $queryd .= "UPDATE " . tbl("video") . " SET limit_price = " . $limit_price . ", remaining_price = " . $limit_price . ", total_price = " . $total_price . ", price_per_sec = " . $price_per_sec . ", type = '" . $type . "', allowed_min_age = " . (int)$allowed_min_age . ", allowed_max_age = " . (int)$allowed_max_age . ", allowed_gender = '" . $allowed_gender . "', 
-            allowed_country = '" . $allowed_country . "', allowed_zipcode = '" . $allowed_zipcode . "', allowed_verified = '" . $allowed_verified . "', start_paying = " . $start_paying . ", end_paying = " . $end_paying . ", duration = " . $input_duration . "";
+            $queryd .= "UPDATE " . tbl("video") . " SET type = '" . $type . "', allowed_min_age = " . (int)$allowed_min_age . ", allowed_max_age = " . (int)$allowed_max_age . ", allowed_gender = '" . $allowed_gender . "', allowed_country = '" . $allowed_country . "', 
+                    allowed_zipcode = '" . $allowed_zipcode . "', allowed_verified = '" . $allowed_verified . "', start_paying = " . $start_paying . ", end_paying = " . $end_paying . ", duration = " . $input_duration . ", limit_price = '" . $limit_price . "', remaining_price = '" . $limit_price . "', total_price = " . $total_price . ", price_per_sec = " . $price_per_sec . "";
+
 
             $query2 = "";
 
@@ -426,7 +458,7 @@ switch ($mode) {
 
             }
 
-            $queryd .= "  WHERE videoid = " . (int)$video_id;
+            $queryd .= ", type = '" . $type . "'  WHERE videoid = " . (int)$video_id;
             $db->Execute($queryd);
 
             if ($config_for_mp4 == 'yes') {
@@ -491,10 +523,10 @@ switch ($mode) {
             }
             if (error())
 //			echo json_encode(array('error'=>error('single')));
-                echo $attach_query;
+                echo "content_type: " . $content_type;
             else
 //			echo json_encode(array('msg'=>msg('single')));
-                echo $attach_query;
+                echo "content_type: " . $content_type;
         }
 }
 

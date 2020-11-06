@@ -75,6 +75,12 @@ class FFMpeg{
         '1080' => array('1920','1080'),
     );
 
+
+//    UPDATED BY RICKY TEST
+    public $original_output_path = "";
+    public $content_type = "";
+
+
     /*
     Coversion command example
     /usr/local/bin/ffmpeg
@@ -353,24 +359,44 @@ class FFMpeg{
         return $info;
 
     }
+
     public function convertVideo($inputFile = false, $options = array(), $isHd = false){
+
         $this->log->TemplogData = "";
         $this->log->TemplogData .= "\r\n======Converting Video=========\r\n";
         //logData($inputFile);
-        //$this->log->newSection("Video Conversion", "Starting");
+        $this->log->newSection("Video Conversion" . $this->content_type, "Starting");
         if($inputFile){
+
+//            empty($options) = 1 is tested by Ricky
+
             if(!empty($options)){
                 $this->setOptions($options);
             }
             $this->inputFile = $inputFile;
             //$myfile = fopen("testfile.txt", "w")
             //fwrite($myfile, $inputFile);
+
+            if ($this->content_type == 'audio') {
+                $this->log->newSection("Audio Conversion", "Starting");
+
+                $this->outputFile = $this->videosDirPath . '/'. $this->options['outputPath'] . '/' . $this->getInputFileName($inputFile);
+
+            }
+
             $this->outputFile = $this->videosDirPath . '/'. $this->options['outputPath'] . '/' . $this->getInputFileName($inputFile);
             $videoDetails = $this->getVideoDetails($inputFile);
             //logData(json_encode($videoDetails));
             $this->videoDetails = $videoDetails;
             $this->output = new stdClass();
             $this->output->videoDetails = $videoDetails;
+
+            $videoDetailsLog = "";
+            foreach ($videoDetails as $key => $value){
+                $videoDetailsLog .= "<strong>{$key}</strong> : {$value}\n";
+            }
+
+            $this->log->writeLine("Getting Video Details Array: ", $videoDetailsLog, true);
 
             /*
                 Comversion Starts here
@@ -383,6 +409,10 @@ class FFMpeg{
             //$this->logs->writeLine("videoDetails", $videoDetails);
 
         }else{
+
+//            UPDATED BY RICKY TEST
+            $this->log->newSection("If input file does not exist", "Starting");
+
             //$this->//logData("no input file");
             //logData(json_encode("no input file"));
         }
@@ -395,6 +425,12 @@ class FFMpeg{
             //logData(json_encode($videoDetails));
             $this->hdFile = "{$this->outputFile}-hd.{$this->options['format']}";
             $out= shell_exec($this->ffMpegPath ." -i {$this->inputFile} -acodec copy -vcodec copy -y -f null /dev/null 2>&1");
+
+
+//            UPDATED BY RICKY TEST
+            $this->log->writeLine("Getting out : ", $out, true);
+
+
             $len = strlen($out);
             $findme = 'Video';
             $findme1 = 'fps';
@@ -415,6 +451,10 @@ class FFMpeg{
                 $this->log->TemplogData .= "\r\n Converting Video SD File  \r\n";
                 $this->sdFile = "{$this->outputFile}-sd.{$this->options['format']}";
                 $fullCommand = $this->ffMpegPath . " -i {$this->inputFile}" . $this->generateCommand($videoDetails, false) . " {$this->sdFile}";
+
+
+                //            UPDATED BY RICKY TEST
+                $this->log->writeLine("Low Resolution Full Command : ", $fullCommand, true);
 
 
                 //$this->logs->writeLine("command", $fullCommand);
@@ -445,7 +485,7 @@ class FFMpeg{
                     $name = substr($name, 0, strrpos($name, "."));
                     $status = "Successful";
                     $this->log->TemplogData .= "\r\n Conversion Status : ".$status." @ ".date("Y-m-d H:i:s")." \r\n";
-                    $this->log->writeLine("Converiosn Ouput",$this->log->TemplogData, true);
+                    $this->log->writeLine("Conversion Ouput",$this->log->TemplogData, true);
 
                     $this->output_file = $this->sdFile;
                     $this->output_details = $this->get_file_info($this->output_file);
@@ -490,7 +530,7 @@ class FFMpeg{
                     //logData(json_encode($this->sdFile1));
                     $status = "Successful";
                     $this->log->TemplogData .= "\r\n Conversion Status : ".$status." @ ".date("Y-m-d H:i:s")."\r\n";
-                    $this->log->writeLine("Converiosn Ouput",$this->log->TemplogData, true);
+                    $this->log->writeLine("Conversion Ouput",$this->log->TemplogData, true);
 
                     $this->output_file = $this->hdFile;
                     $this->output_details = $this->get_file_info($this->output_file);
@@ -507,13 +547,26 @@ class FFMpeg{
                 $this->log->TemplogData .= "\r\n Converting Video SD File  \r\n";
                 $this->sdFile = "{$this->outputFile}-sd.{$this->options['format']}";
                 $fullCommand = $this->ffMpegPath . " -i {$this->inputFile}" . $this->generateCommand($videoDetails, false) . " {$this->sdFile}";
+
+                if ($this->content_type == 'audio') {
+                    $this->sdFile = "{$this->outputFile}-audio.{$this->options['format']}";
+                    $fullCommand = $this->ffMpegPath . " -i {$this->inputFile}" . " {$this->sdFile}";
+                }
+
+
                 logData(json_encode($fullCommand),"sd_vidoes");
                 $this->log->TemplogData .= "\r\n Command : ".$fullCommand." \r\n";
 
                 $conversionOutput = $this->executeCommand($fullCommand);
                 //logData(json_encode($fullCommand));
 
+
                 $this->log->TemplogData .= "\r\n ffmpeg output : ".$conversionOutput." \r\n";
+
+
+                //            UPDATED BY RICKY TEST
+                $this->log->writeLine("Low SD second Execute Full Command : ", $this->log->TemplogData, true);
+
 
                 $this->log->TemplogData .= "\r\n Sarting : MP4Box Conversion for SD \r\n";
                 $fullCommand = $this->mp4BoxPath . " -inter 0.5 {$this->sdFile}  -tmp ".TEMP_DIR;
@@ -535,7 +588,7 @@ class FFMpeg{
                     $name = substr($name, 0, strrpos($name, "."));
                     $status = "Successful";
                     $this->log->TemplogData .= "\r\n Conversion Status : ".$status." @ ".date("Y-m-d H:i:s")." \r\n";
-                    $this->log->writeLine("Converiosn Ouput",$this->log->TemplogData, true);
+                    $this->log->writeLine("Conversion Ouput",$this->log->TemplogData, true);
 
                     $this->output_file = $this->sdFile;
                     $this->output_details = $this->get_file_info($this->output_file);
@@ -722,6 +775,7 @@ class FFMpeg{
      */
     function log_file_info()
     {
+        $configLog = "";
         $details = $this->input_details;
         if(is_array($details))
         {
@@ -730,7 +784,7 @@ class FFMpeg{
                 $configLog .= "<strong>{$name}</strong> : {$value}\n";
             }
         }else{
-            $configLog = "Unknown file details - Unable to get video details using FFMPEG \n";
+            $configLog .= "Unknown file details - Unable to get video details using FFMPEG \n";
         }
 
         $this->duration = $details['duration'];
@@ -740,7 +794,7 @@ class FFMpeg{
 
         }
 
-        $this->log->writeLine('Preparing file...',$_SESSION['duration'],true);
+        $this->log->writeLine('Preparing file...',$configLog,true);
 
     }
     /**
@@ -932,34 +986,49 @@ class FFMpeg{
                     $nr='360';
                 /*End*/
 
-                $this->log->writeLine("Thumbs Generation", "Starting");
-                $this->TemplogData = "";
-                try{
-                    $thumbs_settings = $this->thumbs_res_settings;
-                    logData($thumbs_settings,'checkpoints');
-                    foreach ($thumbs_settings as $key => $thumbs_size){
-                        $height_setting = $thumbs_size[1];
-                        $width_setting = $thumbs_size[0];
-                        $dimension_setting = $width_setting.'x'.$height_setting;
-                        if($key == 'original'){
-                            $dimension_setting = $key;
-                            $dim_identifier = $key;
-                        }else{
-                            $dim_identifier = $width_setting.'x'.$height_setting;
-                        }
-                        $thumbs_settings['vid_file'] = $this->input_file;
-                        $thumbs_settings['duration'] = $this->input_details['duration'];
-                        $thumbs_settings['num']      = thumbs_number;
-                        $thumbs_settings['dim']      = $dimension_setting;
-                        $thumbs_settings['size_tag'] = $dim_identifier;
-                        $this->generateThumbs($thumbs_settings);
-                    }
+//                UPDATED BY RICKY++++++++++++++++++
+//                check if the content type is video or audio FOR THUMBNAIL GENERATION
+                if ($this->input_details['audio_codec'] == '' && $this->input_details['video_codec'] != '') {
 
-                }catch(Exception $e){
-                    $this->TemplogData .= "\r\n Errot Occured : ".$e->getMessage()."\r\n";
+                    $this->log->writeLine("Thumbs Generation ____" . $this->input_details['audio_codec'], "Starting");
+                    $this->TemplogData = "";
+                    try{
+                        $thumbs_settings = $this->thumbs_res_settings;
+                        logData($thumbs_settings,'checkpoints');
+                        foreach ($thumbs_settings as $key => $thumbs_size){
+                            $height_setting = $thumbs_size[1];
+                            $width_setting = $thumbs_size[0];
+                            $dimension_setting = $width_setting.'x'.$height_setting;
+                            if($key == 'original'){
+                                $dimension_setting = $key;
+                                $dim_identifier = $key;
+                            }else{
+                                $dim_identifier = $width_setting.'x'.$height_setting;
+                            }
+                            $thumbs_settings['vid_file'] = $this->input_file;
+                            $thumbs_settings['duration'] = $this->input_details['duration'];
+                            $thumbs_settings['num']      = thumbs_number;
+                            $thumbs_settings['dim']      = $dimension_setting;
+                            $thumbs_settings['size_tag'] = $dim_identifier;
+                            $this->generateThumbs($thumbs_settings);
+                        }
+
+                    }catch(Exception $e){
+                        $this->TemplogData .= "\r\n Errot Occured : ".$e->getMessage()."\r\n";
+                    }
+                    $this->TemplogData .= "\r\n ====== End : Thumbs Generation ======= \r\n";
+                    $this->log->writeLine("Thumbs Files ____ " . $this->input_file . " Resolutions: " . $this->configs['cb_combo_res'], $this->input_file, true );
+
                 }
-                $this->TemplogData .= "\r\n ====== End : Thumbs Generation ======= \r\n";
-                $this->log->writeLine("Thumbs Files", $this->TemplogData , true );
+//                UPDATED BY RICKY TEST
+                else {
+
+                    $this->TemplogData = "";
+                    $orig_file = $this->input_file;
+                    $this->log->writeLine("Audio Files ____ " . $this->input_file . " Resolutions: " . $this->configs['cb_combo_res'], $this->input_file, true );
+
+                }
+
 
 
                 $hr = $this->configs['high_res'];
@@ -995,6 +1064,8 @@ class FFMpeg{
                                     $more_res['video_height'] = $video_height;
                                     $more_res['name'] = $video_height;
                                     logData($more_res['video_height'],'reindex');
+
+
                                     $this->convert(NULL,false,$more_res);
 
                                 }
@@ -1005,11 +1076,11 @@ class FFMpeg{
                     case 'no':
                     default :
                         {
+
                             $this->convertVideo($orig_file);
                         }
                         break;
                 }
-
 
 
 
@@ -1019,7 +1090,7 @@ class FFMpeg{
                 //Copying File To Original Folder
                 if($this->keep_original=='yes')
                 {
-                    $this->log->TemplogData .= "\r\nCopy File to original Folder";
+                    $this->log->TemplogData .= "\r\nCopy File to original Folder " . $this->original_output_path;
                     if(copy($this->input_file,$this->original_output_path))
                         $this->log->TemplogData .= "\r\nFile Copied to original Folder...";
                     else
@@ -1037,7 +1108,7 @@ class FFMpeg{
                 else
                     $this->log->TemplogData .= "conversion_status : failed ";
 
-                $this->log->writeLine("Conversion Completed", $this->log->TemplogData , true );
+                $this->log->writeLine("Conversion Completed___ Output File" . $this->output_file, $this->log->TemplogData , true );
                 //$this->create_log_file();
 
                 break;
@@ -1319,6 +1390,10 @@ class FFMpeg{
     function convert($file=NULL,$for_iphone=false,$more_res=NULL)
     {
 
+//        UPDATED BY RICKY test
+        $this->log->writeLine("Resolution Yes: ", $this->resolutions, true );
+
+
         global $db, $width, $height, $pad_top, $pad_bottom, $pad_left, $pad_right;
 
         $this->log->TemplogData = "";
@@ -1576,7 +1651,7 @@ class FFMpeg{
         }
 
         $this->log->TemplogData .="\r\n\r\nEnd resolutions @ ".date("Y-m-d H:i:s")."\r\n\r\n";
-        $this->log->writeLine('Converiosn Ouput',$this->log->TemplogData,true);
+        $this->log->writeLine('Converiosn Output_convert',$this->log->TemplogData,true);
 
         $this->log->TemplogData = "";
         $this->output_details = $this->get_file_info($this->output_file);
@@ -1820,7 +1895,10 @@ class FFMpeg{
         {
             $this->log->writeLine('File Exists','No',true);
         }else{
-            $this->log->writeLine('File Exists','Yes',true);
+
+            $max_duration = config('max_video_duration') * 60;
+
+            $this->log->writeLine('File Exists____' . $max_duration,'Yes',true);
         }
 
         //Get File info
