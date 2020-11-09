@@ -8,7 +8,11 @@
 <div class="featured-video clearfix">
 	<div class="video_thumb">
 		<a href="{videoLink($pop_video)}">
+			{if $pop_video.background_image != null && $pop_video.background_image != ''}
+			<img class="img-responsive" src="{$pop_video.background_image}">
+			{else}
 			<img src="{getThumb vdetails=$pop_video size=168x105}" {ANCHOR place="video_thumb" data=$pop_video} class="img-responsive">
+			{/if}
 			<time datetime="2016-15-03" class="duration">{if $pop_video.duration>1}{$pop_video.duration|SetTime}{else}00:00{/if}</time>
 		</a>
 		<img src="{$theme}/images/thumb-ratio.png" class="thumb-ratio" alt="">
@@ -27,7 +31,11 @@
 {if $display_type=='homeVideos'}
 <div class="clearfix thumb-holder userAppending">
 	<a class="video-link" href="{videoLink($video)}" title="{$video.title|title}">
-		<img class="img-responsive" src="{getThumb vdetails=$video size=416x260 }">
+		{if $video.background_image != null && $video.background_image != ''}
+		<img class="lazy img-responsive" src="{$video.background_image}">
+		{else}
+		<img class="lazy img-responsive" src="{getThumb vdetails=$video size=416x260 }">
+		{/if}
 	</a>
 	<img src="{$theme}/images/thumb-ratio.png" class="thumb-ratio" alt="{$video.broadcast}">
 

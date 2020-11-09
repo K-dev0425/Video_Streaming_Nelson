@@ -18,7 +18,12 @@
 			<div class="clearfix signin-block">
 				<div class="account-holder">
 					<form name="login_form" method="post" action="" id="login_form" class="user-form">
-						<h2>{lang code="login"}</h2>
+
+						<div class="logo-section">
+							<img src="{$baseurl}/new_layout/3dlogoname.png" alt="" width="100">
+						</div>
+
+						<!--<h2>{lang code="welcome_centx"}</h2>-->
 						<div class="form-group">
 							{*<label for="login_username_sp">{lang code="Username"}</label>*}
 							<input type="text" id="login_username_sp" placeholder="{lang code='type_username_here'}"
@@ -40,7 +45,9 @@
 
 						<input id="login_btn" type="submit" name="login" value="{lang('Login')}" class="btn btn-primary btn-lg btn-block">
 
-						<a href="{$baseurl}/forgot.php?mode=recover_username">{lang code='user_forgot_username'}</a> - <a href="{$baseurl}/forgot.php">{lang code='user_forgot_message'}</a>
+						<!--<a href="{$baseurl}/forgot.php?mode=recover_username">{lang code='user_forgot_username'}</a> - -->
+						<a href="{$baseurl}/forgot.php" id="forgot_password" class="col_blue"><i class="fa fa-lock"></i>{lang code='user_forgot_message'}</a>
+						<a href="{$baseurl}/signup.php" class="float_right col_blue">{lang code='create_new_account'}</a>
 						<input type="hidden" name="login" value="login"></input>
 						{if function_exists('show_all_btns')} 
 						<div class="clearfix social-links">
@@ -51,13 +58,13 @@
 						</div>
 						{/if}
 					</form>
-					<div class="side-box">
-						<h2>{lang code='get_your_account'}</h2>
-						<div class="text-box">
-							<p>{lang code='create_account_msg'}</p>
-						</div>
-						<a class="btn btn-default btn-lg" href="{link name='signup'}">{lang code='get_your_account'}</a>
-					</div>
+					<!--<div class="side-box">-->
+						<!--<h2>{lang code='get_your_account'}</h2>-->
+						<!--<div class="text-box">-->
+							<!--<p>{lang code='create_account_msg'}</p>-->
+						<!--</div>-->
+						<!--<a class="btn btn-default btn-lg" href="{link name='signup'}">{lang code='get_your_account'}</a>-->
+					<!--</div>-->
 				</div>
 			</div>
 		{else}
@@ -67,7 +74,12 @@
 						{$allow_registeration}
 					{else}
 					<form name="signup_form" id="signup_form" method="post" action="{$baseurl}/signup.php"  class="user-form custom-elements">
-						<h2>Signup!</h2>
+
+						<div class="logo-section">
+							<img src="{$baseurl}/new_layout/3dlogoname.png" alt="" width="100">
+						</div>
+
+						<!--<h2>Signup!</h2>-->
 						{foreach from=$required_fields item=field}
 							{if $field.type!='checkbox' && $field.type!='radiobutton'}
 								{$field.class='form-control'}

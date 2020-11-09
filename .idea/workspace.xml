@@ -2,22 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17dc68d8-f026-4c35-b40a-1db95150f5d1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/audiobooks.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/podcasts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/styles/cb_28/layout/audiobooks.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/styles/cb_28/layout/podcasts.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actions/file_uploader.php" beforeDir="false" afterPath="$PROJECT_DIR$/actions/file_uploader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actions/video_convert.php" beforeDir="false" afterPath="$PROJECT_DIR$/actions/video_convert.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_area/manage_price.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin_area/manage_price.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_area/styles/cb_2014/layout/manage_price.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_area/styles/cb_2014/layout/manage_price.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ajax/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/ajax/home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/classes/ClipBucket.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/classes/ClipBucket.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/classes/conversion/ffmpeg.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/classes/conversion/ffmpeg.class.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/langs/en.lang" beforeDir="false" afterPath="$PROJECT_DIR$/includes/langs/en.lang" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/cb_28/layout/ads.html" beforeDir="false" afterPath="$PROJECT_DIR$/styles/cb_28/layout/ads.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/cb_28/layout/blocks/manage/account_video.html" beforeDir="false" afterPath="$PROJECT_DIR$/styles/cb_28/layout/blocks/manage/account_video.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/cb_28/layout/blocks/videos/video.html" beforeDir="false" afterPath="$PROJECT_DIR$/styles/cb_28/layout/blocks/videos/video.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/cb_28/layout/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/styles/cb_28/layout/footer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/cb_28/layout/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/styles/cb_28/layout/header.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/cb_28/layout/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/styles/cb_28/layout/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/cb_28/layout/upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/styles/cb_28/layout/upload.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/cb_28/layout/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/styles/cb_28/layout/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/cb_28/layout/videos.html" beforeDir="false" afterPath="$PROJECT_DIR$/styles/cb_28/layout/videos.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/cb_28/layout/watch_video.html" beforeDir="false" afterPath="$PROJECT_DIR$/styles/cb_28/layout/watch_video.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/cb_28/theme/css/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/cb_28/theme/css/all.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/cb_28/theme/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/styles/cb_28/theme/js/custom.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/global/upload_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/styles/global/upload_form.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,26 +43,26 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="200" />
-          <entry key="HTML" value="35734" />
+          <entry key="CSS" value="1721" />
+          <entry key="HTML" value="38109" />
           <entry key="JavaScript" value="1850" />
-          <entry key="PHP" value="22692" />
-          <entry key="PLAIN_TEXT" value="898" />
+          <entry key="PHP" value="22852" />
+          <entry key="PLAIN_TEXT" value="995" />
           <entry key="SCSS" value="127" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="12" />
-          <entry key="HTML" value="212" />
+          <entry key="CSS" value="13" />
+          <entry key="HTML" value="229" />
           <entry key="Image" value="6" />
           <entry key="JavaScript" value="43" />
-          <entry key="PHP" value="546" />
-          <entry key="PLAIN_TEXT" value="12" />
-          <entry key="SCSS" value="3" />
+          <entry key="PHP" value="565" />
+          <entry key="PLAIN_TEXT" value="15" />
+          <entry key="SCSS" value="4" />
           <entry key="SourceMap" value="1" />
           <entry key="TypeScript" value="2" />
-          <entry key="htaccess" value="1" />
+          <entry key="htaccess" value="2" />
         </counts>
       </usages-collector>
     </session>
@@ -70,59 +70,44 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/upload.php">
+        <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/ffmpeg.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="76" column="36" lean-forward="true" selection-start-line="76" selection-start-column="36" selection-end-line="76" selection-end-column="36" />
+            <state relative-caret-position="93">
+              <caret line="555" column="17" lean-forward="true" selection-start-line="555" selection-start-column="17" selection-end-line="555" selection-end-column="17" />
+              <folding>
+                <element signature="e#7#391#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/header.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="531" column="8" lean-forward="true" selection-start-line="531" selection-start-column="8" selection-end-line="531" selection-end-column="76" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/footer.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="25" column="67" selection-start-line="25" selection-start-column="67" selection-end-line="25" selection-end-column="67" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/file_uploader.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-354">
-              <caret line="397" lean-forward="true" selection-start-line="397" selection-end-line="397" />
-              <folding>
-                <element signature="e#1474#1735#0#PHP" />
-                <element signature="e#1777#2567#0#PHP" />
-                <element signature="e#3237#4367#0#PHP" />
-                <element signature="e#12585#12952#0#PHP" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/blocks/videos/video.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="225" column="76" lean-forward="true" selection-start-line="225" selection-start-column="76" selection-end-line="225" selection-end-column="76" />
-              <folding>
-                <element signature="e#2984#2990#0" expanded="true" />
-                <element signature="e#3171#3192#0" expanded="true" />
-                <element signature="e#3246#3267#0" expanded="true" />
-                <element signature="e#5244#5250#0" expanded="true" />
-                <element signature="e#5646#5652#0" expanded="true" />
-                <element signature="e#5842#5863#0" expanded="true" />
-                <element signature="e#5920#5941#0" expanded="true" />
-                <element signature="e#7556#7562#0" expanded="true" />
-                <element signature="e#7958#7964#0" expanded="true" />
-                <element signature="e#8471#8492#0" expanded="true" />
-                <element signature="e#8549#8570#0" expanded="true" />
-                <element signature="e#10344#10350#0" expanded="true" />
-                <element signature="e#10746#10752#0" expanded="true" />
-                <element signature="e#10941#10962#0" expanded="true" />
-                <element signature="e#11019#11040#0" expanded="true" />
-                <element signature="e#12814#12820#0" expanded="true" />
-                <element signature="e#13216#13222#0" expanded="true" />
-                <element signature="e#8758#8764#0" expanded="true" />
-                <element signature="e#8888#8894#0" expanded="true" />
-                <element signature="e#9009#9030#0" expanded="true" />
-                <element signature="e#9089#9139#0" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -131,70 +116,34 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="784">
-              <caret line="139" column="90" selection-start-line="139" selection-start-column="90" selection-end-line="139" selection-end-column="90" />
+            <state relative-caret-position="182">
+              <caret line="7" selection-start-line="7" selection-end-line="11" selection-end-column="5" />
               <folding>
+                <element signature="e#1291#1325#0" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="e#3814#3836#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/header.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="442" column="21" lean-forward="true" selection-start-line="442" selection-start-column="21" selection-end-line="442" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/ffmpeg.class.php">
+        <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/signup.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-531">
-              <caret line="550" column="41" lean-forward="true" selection-start-line="550" selection-start-column="41" selection-end-line="550" selection-end-column="41" />
+            <state relative-caret-position="27">
+              <caret line="79" column="30" selection-start-line="79" selection-start-column="30" selection-end-line="79" selection-end-column="30" />
               <folding>
-                <element signature="e#7#391#0#PHP" expanded="true" />
-                <element signature="e#35267#37563#0#PHP" />
+                <element signature="n#div#0;n#div#1;n#!!top" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/upload.html">
+        <entry file="file://$PROJECT_DIR$/includes/langs/en.lang">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="509">
-              <caret line="425" column="60" lean-forward="true" selection-start-line="425" selection-start-column="60" selection-end-line="425" selection-end-column="60" />
-              <folding>
-                <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/watch_video.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="e#30#36#0" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/watch_video.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3318">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="104">
+              <caret line="4" column="15885" selection-start-line="4" selection-start-column="15878" selection-end-line="4" selection-end-column="15885" />
             </state>
           </provider>
         </entry>
@@ -202,13 +151,46 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/styles/global/upload_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="59" column="95" selection-start-line="59" selection-start-column="88" selection-end-line="59" selection-end-column="95" />
+            <state relative-caret-position="353">
+              <caret line="419" column="31" selection-start-line="419" selection-start-column="31" selection-end-line="419" selection-end-column="31" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#p#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#p#0;n#div#0;n#div#0;n#div#5;n#div#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#div#1;n#div#0;n#form#0;n#!!top" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/blocks/videos/video.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="11" column="76" lean-forward="true" selection-start-line="11" selection-start-column="76" selection-end-line="11" selection-end-column="76" />
+              <folding>
+                <element signature="e#2984#2990#0" expanded="true" />
+                <element signature="e#3171#3192#0" expanded="true" />
+                <element signature="e#3246#3267#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/styles/cb_28/theme/css/all.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="724">
+              <caret line="5660" column="23" lean-forward="true" selection-start-line="5660" selection-start-column="23" selection-end-line="5660" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ads.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="72" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -224,36 +206,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>uploaded_file_name</find>
-      <find>$uploaded_file_name</find>
-      <find>-&gt;type</find>
-      <find>$video.type_</find>
-      <find>$video.t</find>
-      <find>$video.type</find>
-      <find>no recet</find>
-      <find>no_recent_videos_found</find>
-      <find>no_recent_videos</find>
-      <find>no_recent</find>
-      <find>uploade</find>
-      <find>file_name</find>
-      <find>audio_type</find>
-      <find>audiobook</find>
-      <find>select_audio</find>
-      <find>$video}</find>
-      <find>{$video_dier}</find>
-      <find>{$theme}</find>
-      <find>total_ads_recent</find>
-      <find>Ad</find>
-      <find>ad</find>
-      <find>adHome</find>
-      <find>vjs-poster&quot;</find>
-      <find>{getThumb</find>
-      <find>no_video.mp</find>
-      <find>&lt;video</find>
-      <find>Flashplayer</find>
-      <find>player-holder</find>
-      <find>.vjs-has-started .vjs-poster</find>
       <find>recent_load</find>
+      <find>&quot;pay</find>
+      <find>remainin</find>
+      <find>has been</find>
+      <find>File has been moved</find>
+      <find>Clipbucket(</find>
+      <find>checking</find>
+      <find>checking file</find>
+      <find>.item-video</find>
+      <find>padding: 0 8px</find>
+      <find>subscriptions</find>
+      <find>popular</find>
+      <find>Execute Full Command</find>
+      <find>Clipbucket</find>
+      <find>.contain</find>
+      <find>.owl-item:first-child</find>
+      <find>#0080b4</find>
+      <find>side-box</find>
+      <find>create_account</find>
+      <find>create</find>
+      <find>bs-collapse&quot;</find>
+      <find>#left-menu</find>
+      <find>balance_menu</find>
+      <find>background-image</find>
+      <find>225</find>
+      <find>&quot;videos&quot;</find>
+      <find>$user_det</find>
+      <find>&quot;login&quot;</find>
+      <find>div class=&quot;col-xs-2&quot;</find>
+      <find>div class=&quot;col-xs-4&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>watchPlayer</replace>
@@ -262,8 +244,10 @@
       <replace>audiobook</replace>
       <replace>Audiobook</replace>
       <replace>Podcast</replace>
-      <replace>podcast</replace>
       <replace>$video.type_</replace>
+      <replace>podcast</replace>
+      <replace>#2979ec</replace>
+      <replace>li</replace>
     </replaceStrings>
     <dirStrings>
       <dir>C:\xampp\htdocs\clip</dir>
@@ -275,22 +259,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/admin_area/styles/cb_2014/layout/left_menu.html" />
-        <option value="$PROJECT_DIR$/styles/cb_28/theme/js/custom.min.js" />
-        <option value="$PROJECT_DIR$/styles/cb_28/layout/global_header.html" />
-        <option value="F:/Freelancer Tasks/Vido_Streaming_Nelson/backup/2020.10.13/clip/ajax/home.php" />
-        <option value="$PROJECT_DIR$/admin_area/styles/cb_2014/theme/assets/css/ace.min.css" />
-        <option value="$PROJECT_DIR$/styles/cb_28/layout/blocks/upload/upload_form.html" />
-        <option value="$PROJECT_DIR$/edit_video.php" />
-        <option value="$PROJECT_DIR$/includes/classes/collections.class.php" />
-        <option value="$PROJECT_DIR$/styles/cb_28/layout/edit_account.html" />
         <option value="$PROJECT_DIR$/admin_area/styles/cb_2014/layout/video_payment.html" />
         <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/pay_video.php" />
         <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/upload.class.php" />
         <option value="$PROJECT_DIR$/styles/cb_28/layout/edit_video.html" />
         <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/edit_video.php" />
         <option value="$PROJECT_DIR$/styles/cb_28/layout/body.html" />
-        <option value="$PROJECT_DIR$/styles/cb_28/layout/footer.html" />
         <option value="$PROJECT_DIR$/player/CB_video_js/js/video-js.min.js" />
         <option value="$PROJECT_DIR$/admin_area/styles/cb_2014/layout/view_user.html" />
         <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/user.class.php" />
@@ -299,33 +273,43 @@
         <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/watch_video.php" />
         <option value="$PROJECT_DIR$/includes/functions_video.php" />
         <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/functions_video.php" />
-        <option value="$PROJECT_DIR$/watch_video.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="F:/Basic Datas For Task/New/Plugins/owl-carousel (with mousewheel)/index.html" />
         <option value="$PROJECT_DIR$/js/admin_functions.js" />
         <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/ClipBucket.class.php" />
         <option value="$PROJECT_DIR$/includes/classes/ClipBucket.class.php" />
-        <option value="$PROJECT_DIR$/styles/cb_28/theme/css/all.css" />
-        <option value="$PROJECT_DIR$/ajax/home.php" />
         <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/manage_price.php" />
         <option value="$PROJECT_DIR$/admin_area/manage_price.php" />
         <option value="$PROJECT_DIR$/admin_area/styles/cb_2014/layout/manage_price.html" />
-        <option value="$PROJECT_DIR$/actions/video_convert.php" />
-        <option value="$PROJECT_DIR$/actions/file_uploader.php" />
-        <option value="$PROJECT_DIR$/includes/classes/conversion/ffmpeg.class.php" />
-        <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/video_convert.php" />
-        <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/ffmpeg.class.php" />
-        <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/upload.php" />
         <option value="$PROJECT_DIR$/styles/cb_28/layout/upload.html" />
-        <option value="$PROJECT_DIR$/styles/global/upload_form.html" />
-        <option value="$PROJECT_DIR$/styles/cb_28/layout/index.html" />
         <option value="$PROJECT_DIR$/styles/cb_28/theme/js/custom.js" />
-        <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/home.php" />
-        <option value="$PROJECT_DIR$/includes/langs/en.lang" />
-        <option value="$PROJECT_DIR$/styles/cb_28/layout/blocks/videos/video.html" />
+        <option value="$PROJECT_DIR$/upload.php" />
+        <option value="$PROJECT_DIR$/actions/file_uploader.php" />
+        <option value="$PROJECT_DIR$/watch_video.php" />
+        <option value="$PROJECT_DIR$/includes/classes/conversion/ffmpeg.class.php" />
+        <option value="$PROJECT_DIR$/ajax/home.php" />
+        <option value="$PROJECT_DIR$/actions/video_convert.php" />
         <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/file_uploader.php" />
+        <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/home.php" />
+        <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/upload.php" />
+        <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/video_convert.php" />
+        <option value="$PROJECT_DIR$/styles/cb_28/layout/blocks/manage/account_video.html" />
+        <option value="$PROJECT_DIR$/styles/cb_28/layout/videos.html" />
+        <option value="$PROJECT_DIR$/styles/cb_28/layout/ads.html" />
+        <option value="$PROJECT_DIR$/audiobooks.php" />
+        <option value="$PROJECT_DIR$/styles/cb_28/layout/audiobooks.html" />
+        <option value="$PROJECT_DIR$/styles/cb_28/layout/podcasts.html" />
+        <option value="$PROJECT_DIR$/podcasts.php" />
         <option value="$PROJECT_DIR$/styles/cb_28/layout/watch_video.html" />
+        <option value="$PROJECT_DIR$/styles/cb_28/layout/blocks/videos/video.html" />
+        <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/ffmpeg.class.php" />
+        <option value="$PROJECT_DIR$/styles/global/upload_form.html" />
+        <option value="$PROJECT_DIR$/styles/cb_28/layout/signup.html" />
+        <option value="$PROJECT_DIR$/styles/cb_28/layout/index.html" />
         <option value="$PROJECT_DIR$/styles/cb_28/layout/header.html" />
+        <option value="$PROJECT_DIR$/includes/langs/en.lang" />
+        <option value="$PROJECT_DIR$/styles/cb_28/layout/footer.html" />
+        <option value="$PROJECT_DIR$/styles/cb_28/theme/css/all.css" />
       </list>
     </option>
   </component>
@@ -341,8 +325,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="53" />
+    <option name="x" value="-68" />
+    <option name="y" value="368" />
     <option name="width" value="1482" />
     <option name="height" value="996" />
   </component>
@@ -397,6 +381,13 @@
               <item name="styles" type="462c0819:PsiDirectoryNode" />
               <item name="cb_28" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="clip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="clip" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
+              <item name="cb_28" type="462c0819:PsiDirectoryNode" />
+              <item name="layout" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -443,12 +434,12 @@
       <workItem from="1603728387329" duration="1043000" />
       <workItem from="1603814740279" duration="3921000" />
       <workItem from="1603895030882" duration="37863000" />
-      <workItem from="1604203332456" duration="185031000" />
+      <workItem from="1604203332456" duration="241075000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1180701000" />
+    <option name="totallyTimeSpent" value="1236745000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -461,31 +452,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" weight="0.14498934" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32929516" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49946696" weight="0.32929516" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49946696" visible="true" weight="0.32929516" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50053304" side_tool="true" weight="0.32929516" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
-    </layout>
-    <layout-to-restore>
-      <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.14498934" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.14498934" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32929516" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -502,7 +473,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" />
-    </layout-to-restore>
+    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -511,121 +482,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/blocks/sidebar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1144">
-          <caret line="44" column="51" selection-start-line="44" selection-start-column="51" selection-end-line="44" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/functions_template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="63" column="70" selection-start-line="63" selection-start-column="70" selection-end-line="63" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/ClipBucket.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="529" column="7" lean-forward="true" selection-start-line="529" selection-start-column="7" selection-end-line="529" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/styles/cb_28/theme/css/all.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="738" column="21" lean-forward="true" selection-start-line="738" selection-start-column="21" selection-end-line="738" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/watch_video.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="156" column="35" lean-forward="true" selection-start-line="156" selection-start-column="35" selection-end-line="156" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/manage_price.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="24" lean-forward="true" selection-end-line="43" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="95" column="13" selection-start-line="95" selection-start-column="13" selection-end-line="95" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/styles/cb_27/theme/css/uploader.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="126" column="1" selection-start-line="126" selection-start-column="1" selection-end-line="126" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin_area/styles/cb_2014/layout/manage_price.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/fileinfo/fileinfo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="166" column="9" selection-start-line="166" selection-start-column="9" selection-end-line="166" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/classes/ClipBucket.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/functions_helper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="34" column="64" selection-start-line="34" selection-start-column="64" selection-end-line="34" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin_area/styles/cb_2014/layout/view_conversion_log.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="790">
-          <caret line="40" column="36" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
-          <folding>
-            <element signature="n#style#0;n#em#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin_area/view_conversion_log.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="832">
-          <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_2.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="766" column="9" selection-start-line="766" selection-start-column="9" selection-end-line="766" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/edit_video.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
@@ -640,13 +496,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/actions/video_convert.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2980">
-          <caret line="140" column="41" lean-forward="true" selection-start-line="140" selection-start-column="41" selection-end-line="140" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/classes/sLog.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
@@ -658,13 +507,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1662">
           <caret line="811" column="13" selection-start-line="811" selection-start-column="13" selection-end-line="811" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/video_convert.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="137" column="62" selection-start-line="137" selection-start-column="52" selection-end-line="137" selection-end-column="62" />
         </state>
       </provider>
     </entry>
@@ -696,48 +538,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/actions/file_uploader.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="362" column="42" lean-forward="true" selection-start-line="362" selection-start-column="42" selection-end-line="362" selection-end-column="42" />
-          <folding>
-            <element signature="e#1777#2567#0#PHP" />
-            <element signature="e#3237#4367#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/classes/conversion/ffmpeg.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="679" column="69" lean-forward="true" selection-start-line="679" selection-start-column="69" selection-end-line="679" selection-end-column="69" />
-          <folding>
-            <element signature="e#7#391#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/video_survey_results.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="16" column="52" lean-forward="true" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="49" column="28" lean-forward="true" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/common.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="321" column="12" selection-start-line="321" selection-start-column="12" selection-end-line="321" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -760,63 +564,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/classes/upload.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5340">
-          <caret line="245" column="16" selection-start-line="245" selection-start-column="16" selection-end-line="245" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/ffmpeg.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-531">
-          <caret line="550" column="41" lean-forward="true" selection-start-line="550" selection-start-column="41" selection-end-line="550" selection-end-column="41" />
-          <folding>
-            <element signature="e#7#391#0#PHP" expanded="true" />
-            <element signature="e#35267#37563#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/upload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="76" column="36" lean-forward="true" selection-start-line="76" selection-start-column="36" selection-end-line="76" selection-end-column="36" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/styles/global/upload_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="59" column="95" selection-start-line="59" selection-start-column="88" selection-end-line="59" selection-end-column="95" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#p#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#p#0;n#div#0;n#div#0;n#div#5;n#div#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ajax/home.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="97" column="37" lean-forward="true" selection-start-line="97" selection-start-column="37" selection-end-line="97" selection-end-column="37" />
-          <folding>
-            <element signature="e#7#323#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/home.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="161" column="49" lean-forward="true" selection-start-line="161" selection-start-column="49" selection-end-line="161" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/styles/cb_28/theme/js/custom.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="235">
@@ -824,13 +571,6 @@
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/langs/en.lang">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="4" column="154" lean-forward="true" selection-start-line="4" selection-start-column="154" selection-end-line="4" selection-end-column="155" />
         </state>
       </provider>
     </entry>
@@ -859,36 +599,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/blocks/videos/video.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="225" column="76" lean-forward="true" selection-start-line="225" selection-start-column="76" selection-end-line="225" selection-end-column="76" />
-          <folding>
-            <element signature="e#2984#2990#0" expanded="true" />
-            <element signature="e#3171#3192#0" expanded="true" />
-            <element signature="e#3246#3267#0" expanded="true" />
-            <element signature="e#5244#5250#0" expanded="true" />
-            <element signature="e#5646#5652#0" expanded="true" />
-            <element signature="e#5842#5863#0" expanded="true" />
-            <element signature="e#5920#5941#0" expanded="true" />
-            <element signature="e#7556#7562#0" expanded="true" />
-            <element signature="e#7958#7964#0" expanded="true" />
-            <element signature="e#8471#8492#0" expanded="true" />
-            <element signature="e#8549#8570#0" expanded="true" />
-            <element signature="e#10344#10350#0" expanded="true" />
-            <element signature="e#10746#10752#0" expanded="true" />
-            <element signature="e#10941#10962#0" expanded="true" />
-            <element signature="e#11019#11040#0" expanded="true" />
-            <element signature="e#12814#12820#0" expanded="true" />
-            <element signature="e#13216#13222#0" expanded="true" />
-            <element signature="e#8758#8764#0" expanded="true" />
-            <element signature="e#8888#8894#0" expanded="true" />
-            <element signature="e#9009#9030#0" expanded="true" />
-            <element signature="e#9089#9139#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/player/embed_player.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
@@ -896,30 +606,222 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/watch_video.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="699">
+          <caret line="175" column="3" selection-start-line="175" selection-start-column="3" selection-end-line="175" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="88" column="2" selection-start-line="88" selection-start-column="2" selection-end-line="88" selection-end-column="2" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ajax/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="171" column="2" selection-start-line="171" selection-start-column="2" selection-end-line="171" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actions/video_convert.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="283" selection-start-line="283" selection-end-line="283" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/smarty_internal_write_file.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/watch_video.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3318">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="348">
+          <caret line="162" column="44" lean-forward="true" selection-start-line="162" selection-start-column="44" selection-end-line="162" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/classes/conversion/ffmpeg.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1248">
+          <caret line="34" column="40" lean-forward="true" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="84" column="21" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actions/file_uploader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="403" column="37" lean-forward="true" selection-start-line="403" selection-start-column="37" selection-end-line="403" selection-end-column="37" />
+          <folding>
+            <element signature="e#1475#1736#0#PHP" />
+            <element signature="e#1807#2595#0#PHP" />
+            <element signature="e#3266#4396#0#PHP" />
+            <element signature="e#12673#13040#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="324" column="12" selection-start-line="324" selection-start-column="12" selection-end-line="324" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/classes/upload.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-747">
+          <caret line="1241" column="13" selection-start-line="1241" selection-start-column="13" selection-end-line="1241" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1690">
+          <caret line="72" column="12" lean-forward="true" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="12" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/file_uploader.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-354">
-          <caret line="397" lean-forward="true" selection-start-line="397" selection-end-line="397" />
+        <state relative-caret-position="592">
+          <caret line="302" column="69" lean-forward="true" selection-start-line="302" selection-start-column="69" selection-end-line="302" selection-end-column="69" />
           <folding>
-            <element signature="e#1474#1735#0#PHP" />
-            <element signature="e#1777#2567#0#PHP" />
-            <element signature="e#3237#4367#0#PHP" />
-            <element signature="e#12585#12952#0#PHP" />
+            <element signature="e#1475#1736#0#PHP" />
+            <element signature="e#1807#2595#0#PHP" />
+            <element signature="e#3266#4396#0#PHP" />
+            <element signature="e#12673#13040#0#PHP" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/cb_28/theme/scss/all.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="463" column="25" lean-forward="true" selection-start-line="463" selection-start-column="25" selection-end-line="463" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/videos.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="81" lean-forward="true" selection-start-line="81" selection-end-line="81" />
+          <folding>
+            <element signature="n#style#0;n#section#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/blocks/manage/account_video.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/manage_videos.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="19" column="67" lean-forward="true" selection-start-line="19" selection-start-column="67" selection-end-line="19" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/podcasts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1206">
+          <caret line="121" column="61" lean-forward="true" selection-start-line="121" selection-start-column="61" selection-end-line="121" selection-end-column="61" />
+          <folding>
+            <element signature="n#style#0;n#section#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/.htaccess">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/audiobooks.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="59" column="18" lean-forward="true" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="18" />
+          <folding>
+            <element signature="n#style#0;n#section#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/ads.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1820">
+          <caret line="76" column="29" lean-forward="true" selection-end-line="132" selection-end-column="9" />
+          <folding>
+            <element signature="n#style#0;n#section#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/audiobooks.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="634">
+          <caret line="70" column="34" lean-forward="true" selection-end-line="72" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/blocks/videos/video.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="11" column="76" lean-forward="true" selection-start-line="11" selection-start-column="76" selection-end-line="11" selection-end-column="76" />
+          <folding>
+            <element signature="e#2984#2990#0" expanded="true" />
+            <element signature="e#3171#3192#0" expanded="true" />
+            <element signature="e#3246#3267#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/global/upload_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="419" column="31" selection-start-line="419" selection-start-column="31" selection-end-line="419" selection-end-column="31" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#p#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#p#0;n#div#0;n#div#0;n#div#5;n#div#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#div#0;n#form#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/video_convert.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-791">
+          <caret line="102" column="69" selection-start-line="102" selection-start-column="69" selection-end-line="102" selection-end-column="69" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/watch_video.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="457">
+          <caret line="303" column="103" selection-start-line="303" selection-start-column="86" selection-end-line="303" selection-end-column="103" />
           <folding>
             <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
             <element signature="e#30#36#0" expanded="true" />
@@ -929,20 +831,91 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/ffmpeg.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="555" column="17" lean-forward="true" selection-start-line="555" selection-start-column="17" selection-end-line="555" selection-end-column="17" />
+          <folding>
+            <element signature="e#7#391#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/signup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="79" column="30" selection-start-line="79" selection-start-column="30" selection-end-line="79" selection-end-column="30" />
+          <folding>
+            <element signature="n#div#0;n#div#1;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/podcasts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="634">
+          <caret line="70" column="32" lean-forward="true" selection-start-line="70" selection-start-column="32" selection-end-line="70" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ads.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="72" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="784">
-          <caret line="139" column="90" selection-start-line="139" selection-start-column="90" selection-end-line="139" selection-end-column="90" />
+        <state relative-caret-position="182">
+          <caret line="7" selection-start-line="7" selection-end-line="11" selection-end-column="5" />
           <folding>
+            <element signature="e#1291#1325#0" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="e#3814#3836#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/includes/langs/en.lang">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="4" column="15885" selection-start-line="4" selection-start-column="15878" selection-end-line="4" selection-end-column="15885" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="442" column="21" lean-forward="true" selection-start-line="442" selection-start-column="21" selection-end-line="442" selection-end-column="21" />
+        <state relative-caret-position="390">
+          <caret line="531" column="8" lean-forward="true" selection-start-line="531" selection-start-column="8" selection-end-line="531" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/cb_28/layout/footer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="25" column="67" selection-start-line="25" selection-start-column="67" selection-end-line="25" selection-end-column="67" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/cb_28/theme/css/all.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="724">
+          <caret line="5660" column="23" lean-forward="true" selection-start-line="5660" selection-start-column="23" selection-end-line="5660" selection-end-column="23" />
         </state>
       </provider>
     </entry>

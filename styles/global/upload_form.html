@@ -55,10 +55,17 @@
                     {if $file_type == 'audio'}
                     <h4>{lang code="audio_type"}</h4>
                     <div class="typesContainer">
-                        <input type="radio" name="video_type" id="radio_audiobook" value="audiobook" checked onchange="unset_ad()">
-                        <label for="radio_video">{lang code="audiobook"}</label><br>
-                        <input type="radio" name="video_type" id="radio_podcast" value="podcast" onchange="set_ad()">
-                        <label for="radio_ad">{lang code="podcast"}</label>
+                        <input type="radio" name="audio_type" id="radio_audiobook" value="audiobook" checked>
+                        <label for="radio_audiobook">{lang code="audiobook"}</label><br>
+                        <input type="radio" name="audio_type" id="radio_podcast" value="podcast">
+                        <label for="radio_podcast">{lang code="podcast"}</label>
+                    </div>
+
+                    <div class="typesContainer">
+                        <input type="radio" name="video_type" id="video_audio" value="video" checked onchange="unset_ad()">
+                        <label for="video_audio">{lang code="pay"}</label><br>
+                        <input type="radio" name="video_type" id="ad_audio" value="ad" onchange="set_ad()">
+                        <label for="ad_audio">{lang code="get_paid"}</label>
                     </div>
                     {else}
                     <h4>{lang code="video_type"}</h4>
@@ -358,10 +365,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="pad-bottom-sm text-right">
-                    <button class="btn btn-primary btn-lg"   id="saveVideoDetails">{lang code="submit_now"}</button>
-                </div>
             </div>
         </div>
         <div class="col-md-4 uploadFormSidebarDiv">
@@ -391,6 +394,10 @@
         </div>
     </div>
 
+    <div class="pad-bottom-sm text-right">
+        <button class="btn btn-primary btn-lg"   id="saveVideoDetails">{lang code="submit_now"}</button>
+    </div>
+
     <style>
         .typesContainer {
             margin-bottom: 25px!important;
@@ -410,6 +417,7 @@
 
         .container.cb-box {
             color: #111!important;
+            border-radius: 10px;
         }
     </style>
 
@@ -427,7 +435,7 @@
             if (file_type == 'audio') {
 
                 $('#selectFiles').text('Select Audio');
-
+                $('#dragDrop p').text('Audio can be 1000MB in size, 320 Min in Duration and of any common format.');
 
             }
 

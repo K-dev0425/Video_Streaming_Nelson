@@ -8,7 +8,11 @@
 	<td>
 		<div class="col-md-3">
 			<a class="manageVid_thumb" href="edit_video.php?vid={$video.videoid}">
+				{if $video.background_image != ''}
+				<img src="{$video.background_image}" class="img-responsive audio_image" width="130" height="80" id="thumbs_{$video.videoid}" class="vthumb" title="" onload="set_image_ratio(this)" onresize="set_image_ratio(this)" />
+				{else}
 				<img src="{getThumb vdetails=$video}" class="img-responsive" width="130" height="80" id="thumbs_{$video.videoid}" class="vthumb" title=""/>
+				{/if}
 				<span class="duration">({if
 					$video.duration>1}{$video.duration|SetTime}{else}00:00{/if})</span>
 				</a>
@@ -142,6 +146,22 @@
 	if('{$video.videoid}'=='{$vdo.videoid}'){
 		$("#{$video.videoid}").css("background", "#f1ecec");
 	}
+
 </script>
 {/if}	
 <!-- changes made -->
+
+<script>
+    $(document).ready(function () {
+        // set_image_ratio();
+    });
+
+    function set_image_ratio(elem) {
+        // var audio_images = jQuery('.audio_image');
+        // for (var i=0;i<audio_images.length;i++) {
+            var width = jQuery(elem).width();
+            var height = parseFloat(width) * 0.625;
+            jQuery(elem).height(height);
+        // }
+    }
+</script>

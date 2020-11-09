@@ -13,23 +13,6 @@
 
 
 
-<!--<div id="banner-container" class="clearfix">-->
-	<!--<div class="banner-background">-->
-		<!--<div class="img-wrapper">-->
-			<!--<img src="{$theme}/images/banner/banner1.jpg" style="width: 100%;" alt="">-->
-		<!--</div>-->
-		<!--<div class="home-brand">-->
-			<!--<div id="home-brand-image">-->
-				<!--<img src="{$theme}/images/banner/brand.png" alt="">-->
-			<!--</div>-->
-			<!--<div id="home-brand-text">-->
-				<!--&lt;!&ndash;Fueled by his restored faith in humanity and inspired by Superman's selfless act,&ndash;&gt;-->
-				<!--&lt;!&ndash;Bruce Wayne enlists the help of his new-found ally, Diana Prince, to face an even greater enemy.&ndash;&gt;-->
-			<!--</div>-->
-		<!--</div>-->
-	<!--</div>-->
-<!--</div>-->
-
 <style>
 	#content {
 		width: 100%;
@@ -42,6 +25,30 @@
 
 <div id="main" class="clearfix container">
 	<div id="messageFav" class="alert alert-info marginTop" style="display:none; height:66px;"></div>
+
+	<div id="banner-container" class="clearfix">
+		<div class="banner-background" style="background-image: url({$baseurl}/images/banner/banner.png);">
+			<!--<div class="img-wrapper">-->
+				<!--<img src="{$baseurl}/images/banner/banner.png" style="width: 100%;" alt="">-->
+			<!--</div>-->
+
+			<button class="close-banner" onclick="remove_banner()"><i class="fa fa-times"></i></button>
+
+			<div class="home-brand">
+				<div id="home-brand-image">
+					<!--<img src="{$theme}/images/banner/brand.png" alt="">-->
+				</div>
+				<div id="home-brand-text">
+					<h2>Welcome to Centx!</h2>
+					<h4>
+						If you want to watch videos and get money from videos, Centx is suit for you! <br>
+						...more topics coming soon!
+					</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="clearfix">
 		<div id="content">
 		 {ANCHOR place='global'} 
@@ -351,6 +358,7 @@
             });
 			n = 1;
             $('#recent_load_more').hide();
+            setTimeout(audiobook_carousel, 1000);
             setTimeout(ad_carousel, 1000);
 		}
 		else {
@@ -392,5 +400,82 @@
         else {
             setTimeout(ad_carousel, 1000);
         }
+    }
+
+    function audiobook_carousel() {
+        if($('#recent_audiobooks_sec').find('.item-video').length > 0) {
+            $('#recent_audiobooks_sec').addClass('owl-carousel');
+            var owl = $('#recent_audiobooks_sec');
+            owl.owlCarousel({
+                loop: false,
+                nav: true,
+                margin: 10,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    960: {
+                        items: 2
+                    },
+                    1100: {
+                        items: 3
+                    }
+                }
+            });
+            owl.on('mousewheel', '.owl-stage', function (e) {
+                if (e.deltaY > 0) {
+                    owl.trigger('next.owl');
+                } else {
+                    owl.trigger('prev.owl');
+                }
+                e.preventDefault();
+            });
+            n = 0;
+            return true;
+        }
+        else {
+            setTimeout(podcast_carousel, 1000);
+        }
+    }
+
+    function podcast_carousel() {
+        if($('#recent_podcasts_sec').find('.item-video').length > 0) {
+            $('#recent_podcasts_sec').addClass('owl-carousel');
+            var owl = $('#recent_podcasts_sec');
+            owl.owlCarousel({
+                loop: false,
+                nav: true,
+                margin: 10,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    960: {
+                        items: 2
+                    },
+                    1100: {
+                        items: 3
+                    }
+                }
+            });
+            owl.on('mousewheel', '.owl-stage', function (e) {
+                if (e.deltaY > 0) {
+                    owl.trigger('next.owl');
+                } else {
+                    owl.trigger('prev.owl');
+                }
+                e.preventDefault();
+            });
+            n = 0;
+            return true;
+            setTimeout(ad_carousel, 1000);
+        }
+        else {
+            setTimeout(podcast_carousel, 1000);
+        }
+    }
+
+    function remove_banner() {
+		$('#banner-container').empty();
     }
 </script>

@@ -65,17 +65,44 @@
 									{if $menu.this == "home"}
 									{continue}
 									{/if}
-									<li {if $menu.name|lower == $smarty.const.THIS_PAGE|lower || $menu.name|lower == $currentPage}class="active"{/if}><a href="{$menu.link}">{$menu.name}</a></li>
+									<li {if $menu.name|lower == $smarty.const.THIS_PAGE|lower || $menu.name|lower == $currentPage}class="active"{/if}><span class="menu_icon"><i class="fa fa-play-circle"></i></span><a href="{$menu.link}">{$menu.name}</a></li>
 									{/if}
 									{/foreach}
 
 									<li>
-										<a href="http://lookmyad.com/clip/ads.php">Ads</a>
+										<span class="menu_icon"><i class="fa fa-volume-up"></i></span>
+										<a href="{$baseurl}/ads.php">{lang code="ads"}</a>
+									</li>
+									<li>
+										<span class="menu_icon"><i class="fa fa-headphones"></i></span>
+										<a href="{$baseurl}/audiobooks.php">{lang code="audiobooks"}</a>
+									</li>
+									<li>
+										<span class="menu_icon"><i class="fa fa-microphone"></i></span>
+										<a href="{$baseurl}/podcasts.php">{lang code="podcasts"}</a>
+									</li>
+									<li>
+										<span class="menu_icon"><i class="fa fa-sign-in"></i></span>
+										<a href="{$baseurl}/#">{lang code="subscriptions"}</a>
 									</li>
 									{ANCHOR place="cb_28_head"}
 								</ul>
 
 								<hr>
+
+								{$user_det = $userquery->get_user_details(userid())}
+								{if $user_det != ''}
+								<span class="balance_menu">Balance: ${number_format((float)($user_det.balance), 2)} USD</span><br><br><br>
+								{/if}
+
+								<br><br>
+
+								<div class="form-group">
+									<input type="radio" name="color_scheme" id="dark_theme" value="1" checked onchange="add_dark(this)">
+									<label for="dark_theme">{lang code="dark_theme"}</label><br>
+									<input type="radio" name="color_scheme" id="bright_theme" value="0" onchange="remove_dark(this)">
+									<label for="bright_theme">{lang code="light_theme"}</label>
+								</div>
 
 								<!--<span id="balance_link"></span><br><br><br>-->
 
@@ -257,16 +284,16 @@
 		color: #000;
 		height: calc(100vh - 60px);
 	}
-	#left-menu ul {
+	#left-menu ul, .menu-holder .main-links ul {
 		list-style: none;
 		margin: 10px 10px;
 		padding: 10px 20px 0 30px;
 	}
-	#left-menu ul li {
+	#left-menu ul li, .menu-holder .main-links ul li {
 		min-height: 40px;
-		display: table;
+		display: table!important;
 	}
-	#left-menu ul li a {
+	#left-menu ul li a, .menu-holder .main-links ul li a {
 		display: table-cell;
 		font-size: 18px;
 		vertical-align: middle;
@@ -276,20 +303,21 @@
 	}
 	#left-menu hr, .main-links hr {
 		background: #444;
+		display: block!important;
 		height: 3px;
 		border: none!important;
 	}
-	#left-menu .form-group {
+	#left-menu .form-group, .menu-holder .main-links .form-group {
 		margin-left: 40px;
 	}
-	#left-menu .form-group label {
+	#left-menu .form-group label, .menu-holder .main-links .form-group label {
 		font-size: 16px;
 	}
 	#left-menu .form-group input[type=radio], .main-links .form-group input[type=radio] {
 		position: relative;
 		top: -4px;
 	}
-	#balance_menu {
+	.balance_menu {
 		font-size: 18px;
 		margin-left: 40px;
 	}
@@ -353,10 +381,10 @@
 		text-align: center;
 		padding: 30px 0;
 	}
-	#recent_vids_sec .owl-item, #recent_ads_sec .owl-item {
+	.videos .owl-item, #recent_ads_sec .owl-item {
 		width: 250px!important;
 	}
-	#recent_vids_sec .owl-item:first-child, #recent_ads_sec .owl-item:first-child {
+	.videos .owl-item:first-child, #recent_ads_sec .owl-item:first-child {
 		width: 0px!important;
 	}
 	#check_ads {
@@ -405,6 +433,21 @@
 	.watch_color.yellow {
 		background: yellow!important;
 	}
+	#header .search .cbsearchtype {
+		padding: 0 40px 0 0;
+	}
+	#header .search #searchTypes {
+		display: none;
+	}
+	#header .search input[type="text"] {
+		background: #2d3043;
+	}
+	#left-menu .menu_icon, .menu-holder .main-links .menu_icon {
+		height: 40px;
+		width: 40px;
+		display: table-cell;
+		vertical-align: middle;
+	}
 	@media (max-width: 992px) {
 		#left-menu {
 			display: none;
@@ -443,6 +486,18 @@
 	#container.dark {
 		background: #1f212e;
 	}
+	.fa-play-circle {
+		color: #11e018;
+	}
+	.fa-volume-up {
+		color: #cc34cc;
+	}
+	.fa-headphones {
+		color: #00ffff;
+	}
+	.fa-microphone {
+		color: #ffde77;
+	}
 </style>
 
 <div id="left-menu" class="dark bright">
@@ -460,15 +515,25 @@
 			{if $menu.this == "home"}
 			{continue}
 			{/if}
-			<li {if $menu.name|lower == $smarty.const.THIS_PAGE|lower || $menu.name|lower == $currentPage}class="active"{/if}><a href="{$menu.link}">{$menu.name}</a></li>
+			<li {if $menu.name|lower == $smarty.const.THIS_PAGE|lower || $menu.name|lower == $currentPage}class="active"{/if}> <span class="menu_icon"><i class="fa fa-play-circle"></i></span> <a href="{$menu.link}">{$menu.name}</a></li>
 			{/if}
 			{/foreach}
 
 			<li>
-				<a href="{$baseurl}/ads.php">Ads</a>
+				<span class="menu_icon"><i class="fa fa-volume-up"></i></span>
+				<a href="{$baseurl}/ads.php">{lang code="ads"}</a>
 			</li>
 			<li>
-				<a href="{$baseurl}/#">Subscription</a>
+				<span class="menu_icon"><i class="fa fa-headphones"></i></span>
+				<a href="{$baseurl}/audiobooks.php">{lang code="audiobooks"}</a>
+			</li>
+			<li>
+				<span class="menu_icon"><i class="fa fa-microphone"></i></span>
+				<a href="{$baseurl}/podcasts.php">{lang code="podcasts"}</a>
+			</li>
+			<li>
+				<span class="menu_icon"><i class="fa fa-sign-in"></i></span>
+				<a href="{$baseurl}/#">{lang code="subscriptions"}</a>
 			</li>
 			{ANCHOR place="cb_28_head"}
 		</ul>
@@ -476,7 +541,7 @@
 		<hr>
 
 		{if $user_det != ''}
-		<span id="balance_menu">Balance: ${number_format((float)($user_det.balance), 2)} USD</span><br><br><br>
+		<span class="balance_menu">Balance: ${number_format((float)($user_det.balance), 2)} USD</span><br><br><br>
 		{/if}
 
 		<div class="form-group">
@@ -493,11 +558,11 @@
 
 	$(document).ready(function () {
 	    var menu_2th = $('#left-menu .menu-container ul li:eq(1)');
-	    if ($(menu_2th).text() == 'Videos') $('#left-menu .menu-container ul li:eq(1)').remove();
+	    if ($(menu_2th).find('a').text() == 'Videos') $('#left-menu .menu-container ul li:eq(1)').remove();
     });
 
     var menu_2th = $('#left-menu .menu-container ul li:eq(1)');
-    if ($(menu_2th).text() == 'Videos') $('#left-menu .menu-container ul li:eq(1)').remove();
+    if ($(menu_2th).find('a').text() == 'Videos') $('#left-menu .menu-container ul li:eq(1)').remove();
 
     function add_dark(elem) {
         if ($(elem).prop('checked'))

@@ -7,6 +7,36 @@
     }
 </style>
 
+<div id="mobile-footer" class="dark bright" style="display: none">
+    <div class="row">
+        <div class="col-xs-2" style="width: 15%;position: relative;left: 5px">
+            <i class="fa fa-play-circle" style="color: #cc34cc"></i><br>
+            <a href="{$baseurl}/videos.php" style="color: #cc34cc">{lang code="com_vidz"}</a>
+        </div>
+        <div class="col-xs-2" style="width: 12%">
+            <i class="fa fa-dollar" style="color: #11e018;"></i><br>
+            <a href="{$baseurl}/ads.php" style="color: #11e018">{lang code="ads"}</a>
+        </div>
+        <div class="col-xs-2" style="width: 23%">
+            <i class="fa fa-headphones"></i><br>
+            <a href="{$baseurl}/audiobooks.php" style="color: #00ffff">{lang code="audiobooks"}</a>
+        </div>
+        <div class="col-xs-2" style="width: 20%">
+            <i class="fa fa-microphone"></i><br>
+            <a href="{$baseurl}/podcasts.php" style="color: #ffde77">{lang code="podcasts"}</a>
+        </div>
+        <div class="col-xs-4" style="width: 30%;">
+            {if userid()}
+            {$user_det = $userquery->get_user_details(userid())}
+            <span>Balance</span>
+            <h3>${number_format((float)($user_det.balance), 2)}</h3>
+            {else}
+            <a href="{$baseurl}/signup.php?mode=login">{lang code="login"}</a>
+            {/if}
+        </div>
+    </div>
+</div>
+
 {ANCHOR place="play_front_anchor"}
 <footer id="footer" class="clearfix">
     {$Cbucket->footer()}
